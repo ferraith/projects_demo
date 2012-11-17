@@ -16,7 +16,7 @@ PROJ_NAME = cmsis_core_lpc17xx
 BUILD_DIR = build/$(PLATFORM)/$(BUILD_TYPE)
 
 #============================== Toolchain ==============================================================================
-include make/toolchain.mk
+include ../../toolchain/make/toolchain.mk
 
 
 ########################################################################################################################
@@ -24,7 +24,7 @@ include make/toolchain.mk
 # Libraries
 #
 #============================== Standard Libraries =====================================================================
-include make/libs.mk
+include ../../toolchain/make/libs.mk
 
 
 ########################################################################################################################
@@ -47,7 +47,7 @@ PROJ_OBJ_DIRS  =
 # GCC & Binutils Flags
 #
 #============================== Common Flags ===========================================================================
-include make/flags.mk
+include ../../toolchain/make/flags.mk
 
 #============================== Project Preprocessor Flags =============================================================
 CPPFLAGS +=
@@ -122,7 +122,7 @@ PROJ_INCS    = $(addprefix -I, $(PROJ_INC_DIRS))
 # Targets
 #
 #============================== Common Rules ===========================================================================
-include make/rules.mk
+include ../../toolchain/make/rules.mk
 
 #============================== Project Build Targets ==================================================================
 all: pre_$(PROJ_NAME) $(PROJ_NAME).a
