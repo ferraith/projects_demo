@@ -16,7 +16,7 @@ PROJ_NAME = aoaa
 BUILD_DIR = build/$(PLATFORM)/$(BUILD_TYPE)
 
 #============================== Toolchain ==============================================================================
-include make/toolchain.mk
+include ../../toolchain/make/toolchain.mk
 
 
 ########################################################################################################################
@@ -24,15 +24,15 @@ include make/toolchain.mk
 # Libraries
 #
 #============================== Standard Libraries =====================================================================
-include make/libs.mk
+include ../../toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
 # CMSIS-CORE LPC17xx
-PLTF_INC_DIRS  = platform/cmsis_core_lpc17xx/src/core/include
-PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/src/device/include
+PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/src/core/include
+PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 
 # LPC17xx
-PLTF_INC_DIRS += platform/lpc17xx/src/include
+PLTF_INC_DIRS += ../lpc17xx/src/include
 
 
 ########################################################################################################################
@@ -54,7 +54,7 @@ PROJ_OBJ_DIRS  =
 # GCC & Binutils Flags
 #
 #============================== Common Flags ===========================================================================
-include make/flags.mk
+include ../../toolchain/make/flags.mk
 
 #============================== Project Preprocessor Flags =============================================================
 CPPFLAGS +=
@@ -130,7 +130,7 @@ PROJ_INCS = $(addprefix -I, $(PROJ_INC_DIRS))
 # Targets
 #
 #============================== Common Rules ===========================================================================
-include make/rules.mk
+include ../../toolchain/make/rules.mk
 
 #============================== Project Build Targets ==================================================================
 all: pre_$(PROJ_NAME) $(PROJ_NAME).a

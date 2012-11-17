@@ -34,7 +34,7 @@ PRINTF_SUPPORT  := int
 SCANF_SUPPORT   := int
 
 #============================== Toolchain ==============================================================================
-include make/toolchain.mk
+include toolchain/make/toolchain.mk
 
 
 ########################################################################################################################
@@ -42,7 +42,7 @@ include make/toolchain.mk
 # Libraries
 #
 #============================== Standard Libraries =====================================================================
-include make/libs.mk
+include toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
 # CMSIS-CORE LPC17xx
@@ -51,9 +51,10 @@ PLTF_INC_DIRS  = platform/cmsis_core_lpc17xx/src/core/include
 PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/src/device/include
 PLTF_LIBS      = platform/cmsis_core_lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_core_lpc17xx.a
 
-# FreeRTOS
-# PLTF_INC_DIRS += platform/freertos/src/include
-# PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
+# CMSIS-DSP
+PLTF_LIB_DIRS += platform/cmsis_dsp
+PLTF_INC_DIRS += platform/cmsis_dsp/src/include
+PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
 
 # LPC17xx
 PLTF_LIB_DIRS += platform/lpc17xx
@@ -61,13 +62,14 @@ PLTF_INC_DIRS += platform/lpc17xx/src/include
 PLTF_LIBS     += platform/lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/lpc17xx.a
 
 # AOAA Kit
+# PLTF_LIB_DIRS += platform/aoaa
 # PLTF_INC_DIRS += platform/aoaa/src/include
 # PLTF_LIBS     += platform/aoaa/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa.a
 
-# CMSIS-DSP
-PLTF_LIB_DIRS += platform/cmsis_dsp
-PLTF_INC_DIRS += platform/cmsis_dsp/src/include
-PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
+# FreeRTOS
+PLTF_LIB_DIRS += platform/freertos
+PLTF_INC_DIRS += platform/freertos/src/include
+PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
 
 ########################################################################################################################
@@ -89,7 +91,7 @@ PROJ_OBJ_DIRS  =
 # GCC & Binutils Flags
 #
 #============================== Common Flags ===========================================================================
-include make/flags.mk
+include toolchain/make/flags.mk
 
 #============================== Project Preprocessor Flags =============================================================
 CPPFLAGS += -D__TARGET_PROCESSOR=LPC1769
@@ -232,7 +234,7 @@ PROJ_INCS    = $(addprefix -I, $(PROJ_INC_DIRS))
 # Targets
 #
 #============================== Common Rules ===========================================================================
-include make/rules.mk
+include toolchain/make/rules.mk
 
 #============================== Project Build Targets ==================================================================
 all: $(PROJ_NAME).elf
