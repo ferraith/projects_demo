@@ -52,7 +52,6 @@ CFLAGS += -ffunction-sections
 CFLAGS += -fdata-sections
 CFLAGS += -fno-common
 CFLAGS += -Wall
-CFLAGS += -Wextra
 CFLAGS += -mapcs-frame
 CFLAGS += -mno-sched-prolog
 # CFLAGS += -fomit-frame-pointer
