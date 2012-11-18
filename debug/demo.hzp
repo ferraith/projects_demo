@@ -9,10 +9,48 @@
         <configuration Name="Common" file_type="Reset Script"/>
       </file>
     </folder>
-    <folder Name="src">
-      <file file_name="../src/LPC1700_Startup.s"/>
-      <file file_name="../src/main.c"/>
-      <file file_name="../src/thumb_crt0.s"/>
+    <folder Name="src" filter="*.c;*.s;*.o" path="../src"/>
+    <folder Name="platform">
+        <folder Name="aoaa">
+            <folder Name="src" filter="*.c;*.s;*.o" path="../platform/aoaa/src">
+                <folder Name="include" filter="*.h" path="../platform/aoaa/src/include"/>
+            </folder>
+        </folder>
+        <folder Name="cmsis_core_lpc17xx">
+            <folder Name="src">
+                <folder Name="core">
+                    <folder Name="include" filter="*.h" path="../platform/cmsis_core_lpc17xx/src/core/include"/>
+                </folder>
+                <folder Name="device" filter="*.c;*.s;*.o" path="../platform/cmsis_core_lpc17xx/src/device">
+                    <folder Name="include" filter="*.h" path="../platform/cmsis_core_lpc17xx/src/device/include"/>
+                </folder>
+            </folder>
+        </folder>
+        <folder Name="cmsis_dsp">
+            <folder Name="src" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src">
+                <folder Name="basic_math_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/basic_math_functions"/>
+                <folder Name="common_tables" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/common_tables"/>
+                <folder Name="complex_math_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/complex_math_functions"/>
+                <folder Name="controller_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/controller_functions"/>
+                <folder Name="fast_math_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/fast_math_functions"/>
+                <folder Name="filtering_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/filtering_functions"/>
+                <folder Name="include" filter="*.h" path="../platform/cmsis_dsp/src/include"/>
+                <folder Name="matrix_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/matrix_functions"/>
+                <folder Name="statistics_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/statistics_functions"/>
+                <folder Name="support_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/support_functions"/>
+                <folder Name="transform_functions" filter="*.c;*.s;*.o" path="../platform/cmsis_dsp/src/transform_functions"/>
+            </folder>
+        </folder>
+        <folder Name="freertos">
+            <folder Name="src" filter="*.c;*.s;*.o" path="../platform/freertos/src">
+                <folder Name="include" filter="*.h" path="../platform/freertos/src/include"/>
+            </folder>
+        </folder>
+        <folder Name="lpc17xx">
+            <folder Name="src" filter="*.c;*.s;*.o" path="../platform/lpc17xx/src">
+                <folder Name="include" filter="*.h" path="../platform/lpc17xx/src/include"/>
+            </folder>
+        </folder>
     </folder>
   </project>
   <configuration Name="THUMB RAM Debug" inherited_configurations="THUMB;RAM;Debug"/>
