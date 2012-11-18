@@ -291,15 +291,21 @@
 /** @addtogroup LPC17xx_System_Defines  LPC17xx System Defines
   @{
  */
-
+// LPC1769 configuration:
+// Fcpu = 120 Mhz
+// Fosc = 12 Mhz
+// Fcco = 360Mhz
+// M = 15
+// N = 1
+// CPU Clock Divider = 3
 #define CLOCK_SETUP           1
 #define SCS_Val               0x00000020
 #define CLKSRCSEL_Val         0x00000001
 #define PLL0_SETUP            1
-#define PLL0CFG_Val           0x00050063
+#define PLL0CFG_Val           0x0000000E
 #define PLL1_SETUP            1
 #define PLL1CFG_Val           0x00000023
-#define CCLKCFG_Val           0x00000003
+#define CCLKCFG_Val           0x00000002
 #define USBCLKCFG_Val         0x00000000
 #define PCLKSEL0_Val          0x00000000
 #define PCLKSEL1_Val          0x00000000
@@ -316,12 +322,13 @@
 //               <1=> 2 CPU clocks (for CPU clock up to 40 MHz)
 //               <2=> 3 CPU clocks (for CPU clock up to 60 MHz)
 //               <3=> 4 CPU clocks (for CPU clock up to 80 MHz)
-//               <4=> 5 CPU clocks (for CPU clock up to 100 MHz)
+//               <4=> 5 CPU clocks (for CPU clock up to 100 MHz and up to
+//                                  120 Mhz for LPC1759 and LPC1769 only)
 //               <5=> 6 CPU clocks (for any CPU clock)
 // </e>
 */
 #define FLASH_SETUP           1
-#define FLASHCFG_Val          0x0000303A
+#define FLASHCFG_Val          0x0000403A
 
 /*
 //-------- <<< end of configuration section >>> ------------------------------
