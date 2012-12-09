@@ -26,12 +26,11 @@ $(PROJ_NAME).a: $(PROJ_OBJS)
 %.asm: %.c
 	$(ECHO) "    CC $<"
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
-	-MQ $(BUILD_DIR)/$*.o $< -o $(BUILD_DIR)/$@
+	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
 
 %.asm: %.s
 	$(ECHO) "    CC $<"
 	$(CC) $(CPPFLAGS) $(SFLAGS) -MD $(BUILD_DIR)/$*.d -MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
-#	$(CC) $(CPPFLAGS) $(SFLAGS) -MD $(BUILD_DIR)/$*.d -MQ $(BUILD_DIR)/$*.o $< -o $(BUILD_DIR)/$@
 
 %.o: %.asm
 	$(ECHO) "    AS $(BUILD_DIR)/$<"
