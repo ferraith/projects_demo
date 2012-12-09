@@ -55,6 +55,10 @@
 1: b 1b /* endless loop */
 .endm
 
+.extern xPortPendSVHandler
+.extern xPortSysTickHandler
+.extern vPortSVCHandler
+
 _vectors:
   .word __stack_end__
 #ifdef STARTUP_FROM_RESET
@@ -71,11 +75,11 @@ _vectors:
   .word 0 // Reserved
   .word 0 // Reserved
   .word 0 // Reserved
-  .word SVC_Handler
+  .word vPortSVCHandler
   .word DebugMon_Handler
   .word 0 // Reserved
-  .word PendSV_Handler
-  .word SysTick_Handler 
+  .word xPortPendSVHandler
+  .word xPortSysTickHandler
   .word WDT_IRQHandler
   .word TIMER0_IRQHandler
   .word TIMER1_IRQHandler
@@ -134,10 +138,10 @@ DEFAULT_ISR_HANDLER HardFault_Handler
 DEFAULT_ISR_HANDLER MemManage_Handler
 DEFAULT_ISR_HANDLER BusFault_Handler
 DEFAULT_ISR_HANDLER UsageFault_Handler
-DEFAULT_ISR_HANDLER SVC_Handler 
+DEFAULT_ISR_HANDLER SVC_Handler
 DEFAULT_ISR_HANDLER DebugMon_Handler
 DEFAULT_ISR_HANDLER PendSV_Handler
-DEFAULT_ISR_HANDLER SysTick_Handler 
+DEFAULT_ISR_HANDLER SysTick_Handler
 DEFAULT_ISR_HANDLER WDT_IRQHandler
 DEFAULT_ISR_HANDLER TIMER0_IRQHandler
 DEFAULT_ISR_HANDLER TIMER1_IRQHandler
