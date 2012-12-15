@@ -5,8 +5,10 @@
 /// @author ferraith
 ///
 
-#include "LPC17xx.h"
 #include "FreeRTOS.h"
+#include "LPC17xx.h"
+#include "board.h"
+#include "queue_demo.h"
 #include "task.h"
 
 void vConfigureTimerForRunTimeStats(void) {
@@ -36,37 +38,25 @@ void vConfigureTimerForRunTimeStats(void) {
 	LPC_TIM0->TCR = TCR_COUNT_ENABLE;
 }
 
+
 void vApplicationStackOverflowHook( xTaskHandle pxTask, signed char *pcTaskName )
 {
 	 /* This function will get called if a task overflows its stack. */
 
-	( void ) pxTask;
-	( void ) pcTaskName;
+	(void) pxTask;
+	(void) pcTaskName;
 
 	for( ;; );
 }
 
-void TaskA(void *pvParameters) {
-	int var = 0;
-	for(;;) {
-		var++;
-		vTaskDelay(1000 / portTICK_RATE_MS);
-	}
-	vTaskDelete(NULL);
-}
-
-void TaskB(void *pvParameters) {
-	int var = 0;
-	for(;;) {
-		var++;
-		vTaskDelay(1000 / portTICK_RATE_MS);
-	}
-	vTaskDelete(NULL);
-}
 
 int main(void) {
-	xTaskCreate(TaskA, (const signed char *) "Task A", configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1), NULL);
-	xTaskCreate(TaskB, (const signed char *) "Task B", configMINIMAL_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1), NULL);
+	/* Init hardware */
+	console_init();
+
+	/* Run demos */
+	run_queue_demo();
+
 	/* Start the tasks running. */
 	vTaskStartScheduler();
 

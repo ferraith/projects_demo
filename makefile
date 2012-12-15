@@ -52,9 +52,9 @@ PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/src/device/include
 PLTF_LIBS      = platform/cmsis_core_lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_core_lpc17xx.a
 
 # CMSIS-DSP
-PLTF_LIB_DIRS += platform/cmsis_dsp
-PLTF_INC_DIRS += platform/cmsis_dsp/src/include
-PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
+# PLTF_LIB_DIRS += platform/cmsis_dsp
+# PLTF_INC_DIRS += platform/cmsis_dsp/src/include
+# PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
 
 # LPC17xx
 PLTF_LIB_DIRS += platform/lpc17xx
@@ -62,9 +62,9 @@ PLTF_INC_DIRS += platform/lpc17xx/src/include
 PLTF_LIBS     += platform/lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/lpc17xx.a
 
 # AOAA Kit
-# PLTF_LIB_DIRS += platform/aoaa
-# PLTF_INC_DIRS += platform/aoaa/src/include
-# PLTF_LIBS     += platform/aoaa/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa.a
+PLTF_LIB_DIRS += platform/aoaa
+PLTF_INC_DIRS += platform/aoaa/src/include
+PLTF_LIBS     += platform/aoaa/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa.a
 
 # FreeRTOS
 PLTF_LIB_DIRS += platform/freertos
@@ -80,7 +80,7 @@ PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 PROJ_SRC_DIRS  = src
 
 #============================== Header Directories =====================================================================
-PROJ_INC_DIRS  =
+PROJ_INC_DIRS  = src/include
 
 #============================== Object Directories =====================================================================
 PROJ_OBJ_DIRS  =
@@ -136,9 +136,9 @@ ifeq ($(PLACEMENT_TYPE),$(filter $(PLACEMENT_TYPE),ram))
 LDFLAGS += -s
 endif
 
-LDFLAGS += -defsym __STACKSIZE__=128                                    # Main Stack Size
+LDFLAGS += -defsym __STACKSIZE__=256                                    # Main Stack Size
 LDFLAGS += -defsym __STACKSIZE_PROCESS__=0                              # Process Stack Size
-LDFLAGS += -defsym __HEAPSIZE__=128                                     # Heap Size
+LDFLAGS += -defsym __HEAPSIZE__=0                                       # Heap Size
 
 ifeq ($(PRINTF_SUPPORT),int)
 LDFLAGS += -defsym=__vfprintf=__vfprintf_int                            # Printf Fixed Point Support: int

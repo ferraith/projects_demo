@@ -339,12 +339,10 @@ static void handlePublish(uint32_t addrHi, uint32_t addrLo, uint8_t* buf,
   }
 
   if (!exists && freeNodeId != 0) {
-    uint32_t t = 0;
     // add node to list
     nodes[freeNodeId-1].addrHi = addrHi;
     nodes[freeNodeId-1].addrLo = addrLo;
     nodes[freeNodeId-1].aliveTime = time_get();
-    t = time_get();
 
     for (i = 0; i < RF_NODE_MAX_CAPS && i < len; i++) {
       nodes[freeNodeId-1].caps[i] = buf[i];

@@ -55,9 +55,9 @@
 1: b 1b /* endless loop */
 .endm
 
+.extern vPortSVCHandler
 .extern xPortPendSVHandler
 .extern xPortSysTickHandler
-.extern vPortSVCHandler
 
 _vectors:
   .word __stack_end__

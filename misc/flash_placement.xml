@@ -12,7 +12,7 @@
     <ProgramSection alignment="4" load="Yes" name=".dtors" />
     <ProgramSection alignment="4" load="Yes" name=".ctors" />
     <ProgramSection alignment="4" load="Yes" name=".rodata" />
-    <ProgramSection alignment="4" load="Yes" name=".ARM.exidx" address_symbol="__exidx_start" end_symbol="__exidx_end"/>    
+    <ProgramSection alignment="4" load="Yes" name=".ARM.exidx" address_symbol="__exidx_start" end_symbol="__exidx_end"/>
     <ProgramSection alignment="4" load="Yes" runin=".fast_run" name=".fast" />
     <ProgramSection alignment="4" load="Yes" runin=".data_run" name=".data" />
     <ProgramSection alignment="4" load="Yes" runin=".tdata_run" name=".tdata" />
@@ -34,5 +34,6 @@
     <ProgramSection alignment="4" load="No" name=".non_init" />
     <ProgramSection alignment="4" load="No" name=".tbss"/>
     <ProgramSection alignment="4" load="No" name=".tdata_run"/>
-  </MemorySegment>
+    <ProgramSection alignment="4" load="No" name=".rtos_heap" />
+    </MemorySegment>
 </Root>
