@@ -22,9 +22,6 @@
     <ProgramSection alignment="4" load="No" name=".bss2" />
   </MemorySegment>
   <MemorySegment name="$(AHBSRAM_NAME:AHBSRAM);$(RAM_NAME:RAM)" >
-    <ProgramSection alignment="4" size="__HEAPSIZE__" load="No" name=".heap" />
-    <ProgramSection alignment="4" size="__STACKSIZE__" load="No" name=".stack" />
-    <ProgramSection alignment="4" size="__STACKSIZE_PROCESS__" load="No" name=".stack_process" />
   </MemorySegment>
   <MemorySegment name="$(RAM_NAME:RAM)" >
     <ProgramSection alignment="0x100" load="No" name=".vectors_ram" start="$(RAM_START:)"/>
@@ -34,6 +31,9 @@
     <ProgramSection alignment="4" load="No" name=".non_init" />
     <ProgramSection alignment="4" load="No" name=".tbss"/>
     <ProgramSection alignment="4" load="No" name=".tdata_run"/>
+    <ProgramSection alignment="4" size="__HEAPSIZE__" load="No" name=".heap" />
+    <ProgramSection alignment="4" size="__STACKSIZE__" load="No" name=".stack" />
+    <ProgramSection alignment="4" size="__STACKSIZE_PROCESS__" load="No" name=".stack_process" />
     <ProgramSection alignment="4" load="No" name=".rtos_heap" />
     </MemorySegment>
 </Root>
