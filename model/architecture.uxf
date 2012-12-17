@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <type>com.umlet.element.custom.Node</type>
+    <coordinates>
+      <x>90</x>
+      <y>414</y>
+      <w>792</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>center:Hardware
+center:Android Open Accessory Application Kit
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <group>
+    <element>
+      <type>com.umlet.element.custom.Node</type>
+      <coordinates>
+        <x>90</x>
+        <y>171</y>
+        <w>792</w>
+        <h>234</h>
+      </coordinates>
+      <panel_attributes>center:Platform Software
+bg=orange</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>108</x>
+        <y>207</y>
+        <w>99</w>
+        <h>135</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+FreeRTOS</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>216</x>
+        <y>207</y>
+        <w>99</w>
+        <h>90</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+Board
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>324</x>
+        <y>207</y>
+        <w>99</w>
+        <h>90</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+lwIP</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>432</x>
+        <y>207</y>
+        <w>99</w>
+        <h>90</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+USB
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>540</x>
+        <y>207</y>
+        <w>99</w>
+        <h>90</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+AOA
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>648</x>
+        <y>207</y>
+        <w>99</w>
+        <h>90</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+FAT
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>756</x>
+        <y>207</y>
+        <w>99</w>
+        <h>135</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+CMSIS-DSP</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>216</x>
+        <y>306</y>
+        <w>531</w>
+        <h>36</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+LPC17xx</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>108</x>
+        <y>351</y>
+        <w>747</w>
+        <h>36</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+CMSIS-CORE LPC17xx</panel_attributes>
+      <additional_attributes/>
+    </element>
+  </group>
+  <group>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>108</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC A
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>216</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC B
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>324</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC C
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>432</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC D
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>540</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC E
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>648</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC F
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.Class</type>
+      <coordinates>
+        <x>756</x>
+        <y>90</y>
+        <w>99</w>
+        <h>54</h>
+      </coordinates>
+      <panel_attributes>&lt;&lt;component&gt;&gt;
+SWC G
+fg=gray</panel_attributes>
+      <additional_attributes/>
+    </element>
+    <element>
+      <type>com.umlet.element.custom.Node</type>
+      <coordinates>
+        <x>90</x>
+        <y>54</y>
+        <w>792</w>
+        <h>108</h>
+      </coordinates>
+      <panel_attributes>center:Application Software
+fg=black
+bg=green</panel_attributes>
+      <additional_attributes/>
+    </element>
+  </group>
+</diagram>
