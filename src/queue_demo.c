@@ -1,9 +1,9 @@
-/*
- * queue_demo.c
- *
- *  Created on: 13.12.2012
- *      Author: andreas
- */
+// Copyright (C) ferraith. All rights reserved.
+
+///
+/// @brief  FreeRTOS queue demo
+/// @author ferraith
+///
 
 #include "queue_demo.h"
 
@@ -14,8 +14,16 @@
 #include "queue.h"
 #include "task.h"
 
+#define TASK_STACK_SIZE 160
+
+/// FreeRTOS queue containing the counter which is transfered between the two tasks.
 static xQueueHandle queue = NULL;
 
+///
+/// @brief      Implementation of a FreeRTOS task receiving and sending a counter. This task starts sending the counter.
+/// @param[in]  Parameters of this task
+/// @return     None
+///
 void TaskA(void *pvParameters) {
 	portTickType last_wake_time;
 	uint32_t counter = 0;
@@ -26,7 +34,7 @@ void TaskA(void *pvParameters) {
 
 	for(;;) {
 		if(init == 1) {
-			/* Initial send */
+			// Initial send
 			xQueueSend(queue, &counter, 0);
 			init = 0;
 		} else {
@@ -43,7 +51,11 @@ void TaskA(void *pvParameters) {
 	vTaskDelete(NULL);
 }
 
-
+///
+/// @brief      Implementation of a FreeRTOS task receiving and sending a counter.
+/// @param[in]  Parameters of this task
+/// @return     None
+///
 void TaskB(void *pvParameters) {
 	portTickType last_wake_time;
 	vTaskDelay(50 * configTICK_RATE_HZ / 1000);
@@ -70,7 +82,7 @@ void run_queue_demo(void) {
 	queue = xQueueCreate(1, sizeof(uint32_t));
 
 	if(queue != NULL) {
-		xTaskCreate(TaskA, (const signed char *) "Task A", 100, NULL, (tskIDLE_PRIORITY + 1), NULL);
-		xTaskCreate(TaskB, (const signed char *) "Task B", 100, NULL, (tskIDLE_PRIORITY + 1), NULL);
+		xTaskCreate(TaskA, (const signed char *) "Task A", TASK_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1), NULL);
+		xTaskCreate(TaskB, (const signed char *) "Task B", TASK_STACK_SIZE, NULL, (tskIDLE_PRIORITY + 1), NULL);
 	}
 }
