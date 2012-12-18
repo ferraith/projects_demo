@@ -1,16 +1,16 @@
 ########################################################################################################################
 #
-# Project: LPC17xx library
+# Project: lwIP library
 #
 # Description:
-#	Makefile used to build the LPC17xx library.
+#	Makefile used to build the lwIP library.
 #
 ########################################################################################################################
 #
 # Configuration
 #
 #============================== Common =================================================================================
-PROJ_NAME = lpc17xx
+PROJ_NAME = lwip
 
 #============================== Build ==================================================================================
 BUILD_DIR = build/$(PLATFORM)/$(BUILD_TYPE)
@@ -31,16 +31,31 @@ include ../../toolchain/make/libs.mk
 PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/src/core/include
 PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 
+# FreeRTOS
+PLTF_INC_DIRS += ../freertos/src/include
 
 ########################################################################################################################
 #
 # Project Files
 #
 #============================== Source Directories =====================================================================
-PROJ_SRC_DIRS  = src
+PROJ_SRC_DIRS  = src/api
+PROJ_SRC_DIRS += src/core
+PROJ_SRC_DIRS += src/core/ipv4
+# PROJ_SRC_DIRS += src/core/ipv6
+PROJ_SRC_DIRS += src/core/snmp
+PROJ_SRC_DIRS += src/netif
+PROJ_SRC_DIRS += src/netif/ppp
+PROJ_SRC_DIRS += src/port
+PROJ_SRC_DIRS += src/port/arch
 
 #============================== Header Directories =====================================================================
 PROJ_INC_DIRS  = src/include
+PROJ_INC_DIRS += src/include/ipv4
+# PROJ_INC_DIRS += src/include/ipv6
+PROJ_INC_DIRS += src/include/netif
+PROJ_INC_DIRS += src/include/posix
+PROJ_INC_DIRS += src/port/include
 
 #============================== Object Directories =====================================================================
 PROJ_OBJ_DIRS  =
@@ -68,7 +83,7 @@ else ifeq ($(BUILD_TYPE),release)
 endif
 
 #============================== Project C Compile Flags ================================================================
-CFLAGS += -ffreestanding
+CFLAGS +=
 
 ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
