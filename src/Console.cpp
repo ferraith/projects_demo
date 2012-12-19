@@ -3,20 +3,18 @@
 
 #include "Console.h"
 
+#include <string.h>
+
 #include "LPC17xx.h"
 #include "lpc17xx_pinsel.h"
-#include "lpc17xx_uart.h"
 
-Console::Console() {
-	// TODO Auto-generated constructor stub
+#define CONSOLE_DEV ((LPC_UART_TypeDef *)LPC_UART0)
 
-}
+Console::Console() {}
 
-Console::~Console() {
-	// TODO Auto-generated destructor stub
-}
+Console::~Console() {}
 
-bool Console::Init() {
+void Console::Init() {
   PINSEL_CFG_Type PinCfg;
   UART_CFG_Type uartCfg;
 
@@ -33,8 +31,18 @@ bool Console::Init() {
   uartCfg.Parity = UART_PARITY_NONE;
   uartCfg.Stopbits = UART_STOPBIT_1;
 
-  UART_Init(((LPC_UART_TypeDef *)LPC_UART0), &uartCfg);
-  UART_TxCmd(((LPC_UART_TypeDef *)LPC_UART0), ENABLE);
+  UART_Init(CONSOLE_DEV, &uartCfg);
+  UART_TxCmd(CONSOLE_DEV, ENABLE);
+}
 
-  return true;
+uint32_t Console::SendData(uint8_t *txbuf, uint32_t buflen, TRANSFER_BLOCK_Type flag) {
+  return UART_Send(CONSOLE_DEV, txbuf, buflen, flag);
+}
+
+uint32_t Console::SendString(uint8_t *str) {
+  return UART_Send(CONSOLE_DEV, str, strlen((const char *) str), BLOCKING);
+}
+
+uint32_t ReceiveData(uint8_t *rxbuf, uint32_t buflen, TRANSFER_BLOCK_Type flag) {
+  return UART_Receive(CONSOLE_DEV, rxbuf, buflen, flag);
 }
