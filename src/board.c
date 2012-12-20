@@ -29,14 +29,17 @@
 #include "lpc17xx_ssp.h"
 #include "lpc17xx_adc.h"
 #include "board.h"
+#include "string.h"
 
+/*
 #include "lwip/inet.h"
 #include "lwip/init.h"
 #include "lwip/netif.h"
 #include "lwip/ip.h"
+*/
 
-err_t ethernetif_init(struct netif *netif);
-void ethernetif_poll(void);
+//err_t ethernetif_init(struct netif *netif);
+//void ethernetif_poll(void);
 
 /******************************************************************************
  * Defines and typedefs
@@ -59,7 +62,7 @@ void ethernetif_poll(void);
  * Local variables
  *****************************************************************************/
 
-static struct netif _eth0If;
+//static struct netif _eth0If;
 
 /*
  * UART receive buffer
@@ -73,15 +76,15 @@ static uint8_t rxq[RX_BUF_SIZE];
  * Local Functions
  *****************************************************************************/
 
-static void rxq_put(uint8_t data)
-{
-  // full
-  if (rxqOut == (rxqIn + 1) % RX_BUF_SIZE) {
-    return;
-  }
-  rxq[rxqIn] = data;
-  rxqIn = (rxqIn + 1) % RX_BUF_SIZE;
-}
+//static void rxq_put(uint8_t data)
+//{
+//  // full
+//  if (rxqOut == (rxqIn + 1) % RX_BUF_SIZE) {
+//    return;
+//  }
+//  rxq[rxqIn] = data;
+//  rxqIn = (rxqIn + 1) % RX_BUF_SIZE;
+//}
 
 static uint8_t rxq_get(void)
 {
@@ -102,25 +105,25 @@ static uint8_t rxq_isEmpty(void)
   return (rxqIn == rxqOut);
 }
 
-static void rf_uartRecvCb(void)
-{
-  uint8_t data = 0;
-  uint32_t len = 0;
-
-  while(1) {
-      len = UART_Receive(RF_DEV, &data, 1, NONE_BLOCKING);
-
-      if (len) {
-        rxq_put(data);
-      }
-
-      // there is no more data
-      else {
-
-        break;
-      }
-  }
-}
+//static void rf_uartRecvCb(void)
+//{
+//  uint8_t data = 0;
+//  uint32_t len = 0;
+//
+//  while(1) {
+//      len = UART_Receive(RF_DEV, &data, 1, NONE_BLOCKING);
+//
+//      if (len) {
+//        rxq_put(data);
+//      }
+//
+//      // there is no more data
+//      else {
+//
+//        break;
+//      }
+//  }
+//}
 
 
 /******************************************************************************
@@ -189,7 +192,7 @@ uint32_t console_send(uint8_t *txbuf, uint32_t buflen,
  *****************************************************************************/
 uint32_t console_sendString(uint8_t *str)
 {
-	return UART_SendString(CONSOLE_DEV, str);
+	return UART_Send(CONSOLE_DEV, str, strlen((const char *) str), BLOCKING);
 }
 
 /******************************************************************************
@@ -233,7 +236,7 @@ void i2c0_init(void)
 	I2C_Init(LPC_I2C0, 100000);
 
 	/* Enable I2C0 operation */
-	I2C_Cmd(LPC_I2C0, ENABLE);
+	I2C_Cmd(LPC_I2C0, I2C_MASTER_MODE, ENABLE);
 }
 
 /******************************************************************************
@@ -320,33 +323,33 @@ uint16_t trimpot_get(void)
  *   Initialize the UART connected to the XBee/Jennic module
  *
  *****************************************************************************/
-void rf_uart_init(void)
-{
-	PINSEL_CFG_Type PinCfg;
-	UART_CFG_Type uartCfg;
-
-	/* Initialize UART1 pin connect */
-	PinCfg.Funcnum = 1;
-	PinCfg.Portnum = 0;
-	PinCfg.Pinnum = 15;
-	PINSEL_ConfigPin(&PinCfg);
-	PinCfg.Pinnum = 16;
-	PINSEL_ConfigPin(&PinCfg);
-
-	uartCfg.Baud_rate = 9600;
-	uartCfg.Databits = UART_DATABIT_8;
-	uartCfg.Parity = UART_PARITY_NONE;
-	uartCfg.Stopbits = UART_STOPBIT_1;
-
-	UART_Init(RF_DEV, &uartCfg);
-
-	UART_SetupCbs(RF_DEV, 0, &rf_uartRecvCb);
-
-	UART_TxCmd(RF_DEV, ENABLE);
-
-	UART_IntConfig(RF_DEV, UART_INTCFG_RBR, ENABLE);
-	NVIC_EnableIRQ(UART1_IRQn);
-}
+//void rf_uart_init(void)
+//{
+//	PINSEL_CFG_Type PinCfg;
+//	UART_CFG_Type uartCfg;
+//
+//	/* Initialize UART1 pin connect */
+//	PinCfg.Funcnum = 1;
+//	PinCfg.Portnum = 0;
+//	PinCfg.Pinnum = 15;
+//	PINSEL_ConfigPin(&PinCfg);
+//	PinCfg.Pinnum = 16;
+//	PINSEL_ConfigPin(&PinCfg);
+//
+//	uartCfg.Baud_rate = 9600;
+//	uartCfg.Databits = UART_DATABIT_8;
+//	uartCfg.Parity = UART_PARITY_NONE;
+//	uartCfg.Stopbits = UART_STOPBIT_1;
+//
+//	UART_Init(RF_DEV, &uartCfg);
+//
+//	UART_SetupCbs(RF_DEV, 0, &rf_uartRecvCb);
+//
+//	UART_TxCmd(RF_DEV, ENABLE);
+//
+//	UART_IntConfig(RF_DEV, UART_INTCFG_RBR, ENABLE);
+//	NVIC_EnableIRQ(UART1_IRQn);
+//}
 
 /******************************************************************************
  *
@@ -382,7 +385,7 @@ uint32_t rf_uart_send(uint8_t *txbuf, uint32_t buflen,
  *****************************************************************************/
 uint32_t rf_uart_sendString(uint8_t *str)
 {
-	return UART_SendString(RF_DEV, str);
+	return UART_Send(RF_DEV, str, strlen((const char *) str), BLOCKING);
 }
 
 /******************************************************************************
@@ -429,10 +432,10 @@ uint8_t rf_uart_recvIsEmpty(void)
  *   UART1 interrupt handler
  *
  *****************************************************************************/
-void UART1_IRQHandler(void)
-{
-  UART1_StdIntHandler();
-}
+//void UART1_IRQHandler(void)
+//{
+//  UART1_StdIntHandler();
+//}
 
 /******************************************************************************
  *
@@ -512,33 +515,33 @@ void emac_pinConfig(void)
  *   Initialize the network interface
  *
  *****************************************************************************/
-int net_init(uint8_t* ip, uint8_t* mask, uint8_t* gateway)
-{
-  struct ip_addr ipaddr, netmask, gw;
-
-  emac_pinConfig();
-
-  lwip_init();
-
-  IP4_ADDR(&ipaddr, ip[0],ip[1],ip[2],ip[3]);
-  IP4_ADDR(&gw, gateway[0],gateway[1],gateway[2],gateway[3]);
-  IP4_ADDR(&netmask, mask[0],mask[1],mask[2],mask[3]);
-
-  if (netif_add(&_eth0If, &ipaddr, &netmask, &gw, NULL, ethernetif_init,
-      ip_input) == NULL)
-  {
-    return -1;
-  }
-
-  netif_set_default(&_eth0If);
-  netif_set_up(&_eth0If);
-
-
-
-  return 0;
-}
-
-void net_task(void)
-{
-  ethernetif_poll();
-}
+//int net_init(uint8_t* ip, uint8_t* mask, uint8_t* gateway)
+//{
+//  struct ip_addr ipaddr, netmask, gw;
+//
+//  emac_pinConfig();
+//
+//  lwip_init();
+//
+//  IP4_ADDR(&ipaddr, ip[0],ip[1],ip[2],ip[3]);
+//  IP4_ADDR(&gw, gateway[0],gateway[1],gateway[2],gateway[3]);
+//  IP4_ADDR(&netmask, mask[0],mask[1],mask[2],mask[3]);
+//
+//  if (netif_add(&_eth0If, &ipaddr, &netmask, &gw, NULL, ethernetif_init,
+//      ip_input) == NULL)
+//  {
+//    return -1;
+//  }
+//
+//  netif_set_default(&_eth0If);
+//  netif_set_up(&_eth0If);
+//
+//
+//
+//  return 0;
+//}
+//
+//void net_task(void)
+//{
+//  ethernetif_poll();
+//}
