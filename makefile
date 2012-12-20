@@ -1,9 +1,9 @@
 ########################################################################################################################
 #
-# Project: FreeRTOS library
+# Project: FreeRTOS Library
 #
 # Description:
-#	Makefile used to build the FreeRTOS library.
+#	Makefile used to build the FreeRTOS Library.
 #
 ########################################################################################################################
 #
@@ -16,7 +16,7 @@ PROJ_NAME = freertos
 BUILD_DIR = build/$(PLATFORM)/$(BUILD_TYPE)
 
 #============================== Toolchain ==============================================================================
-include make/toolchain.mk
+include ../../toolchain/make/toolchain.mk
 
 
 ########################################################################################################################
@@ -24,12 +24,12 @@ include make/toolchain.mk
 # Libraries
 #
 #============================== Standard Libraries =====================================================================
-include make/libs.mk
+include ../../toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
 # CMSIS-CORE LPC17xx
-PLTF_INC_DIRS  = platform/cmsis_core_lpc17xx/src/core/include
-PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/src/device/include
+PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/src/core/include
+PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 
 
 ########################################################################################################################
@@ -51,7 +51,7 @@ PROJ_OBJ_DIRS  =
 # GCC & Binutils Flags
 #
 #============================== Common Flags ===========================================================================
-include make/flags.mk
+include ../../toolchain/make/flags.mk
 
 #============================== Project Preprocessor Flags =============================================================
 CPPFLAGS += -DARM_MATH_CM3
@@ -59,6 +59,7 @@ CPPFLAGS += -DARM_MATH_CM3
 ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
 endif
+
 #============================== Project S Compile Flags ================================================================
 SFLAGS +=
 
@@ -67,7 +68,14 @@ else ifeq ($(BUILD_TYPE),release)
 endif
 
 #============================== Project C Compile Flags ================================================================
-CFLAGS +=
+CFLAGS += -Wextra
+
+ifeq ($(BUILD_TYPE),debug)
+else ifeq ($(BUILD_TYPE),release)
+endif
+
+#============================== Project C++ Compile Flags ==============================================================
+CXXFLAGS +=
 
 ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
@@ -96,25 +104,29 @@ PROJ_OBJ_DIRS := $(strip $(PROJ_OBJ_DIRS))
 CPPFLAGS      := $(strip $(CPPFLAGS))
 SFLAGS        := $(strip $(SFLAGS))
 CFLAGS        := $(strip $(CFLAGS))
+CXXFLAGS      := $(strip $(CXXFLAGS))
 ASFLAGS       := $(strip $(ASFLAGS))
 ARFLAGS       := $(strip $(ARFLAGS))
 
 #============================== vpath Directories ======================================================================
 vpath %.s $(PROJ_SRC_DIRS)
 vpath %.c $(PROJ_SRC_DIRS)
+vpath %.cpp $(PROJ_SRC_DIRS)
 vpath %.o $(PROJ_OBJ_DIRS) $(BUILD_DIR)
 vpath %.a $(BUILD_DIR)
 
 #============================== Build Variables ========================================================================
 find_s_files = $(wildcard $(PROJ_SRC_DIR)/*.s)
 find_c_files = $(wildcard $(PROJ_SRC_DIR)/*.c)
+find_cpp_files = $(wildcard $(PROJ_SRC_DIR)/*.cpp)
 find_o_files = $(wildcard $(PROJ_OBJ_DIR)/*.o)
 
 PROJ_S_SRCS := $(notdir $(foreach PROJ_SRC_DIR,$(PROJ_SRC_DIRS),$(find_s_files)))
 PROJ_C_SRCS := $(notdir $(foreach PROJ_SRC_DIR,$(PROJ_SRC_DIRS),$(find_c_files)))
+PROJ_CPP_SRCS := $(notdir $(foreach PROJ_SRC_DIR,$(PROJ_SRC_DIRS),$(find_cpp_files)))
 PROJ_O_SRCS := $(notdir $(foreach PROJ_OBJ_DIR,$(PROJ_OBJ_DIRS),$(find_o_files)))
 
-PROJ_OBJS    = $(strip $(PROJ_S_SRCS:.s=.o) $(PROJ_C_SRCS:.c=.o) $(PROJ_O_SRCS))
+PROJ_OBJS = $(strip $(PROJ_S_SRCS:.s=.o) $(PROJ_C_SRCS:.c=.o) $(PROJ_CPP_SRCS:.cpp=.o) $(PROJ_O_SRCS))
 
 STD_INCS = $(addprefix -isystem, $(STD_INC_DIRS))
 PLTF_INCS = $(addprefix -I, $(PLTF_INC_DIRS))
@@ -126,7 +138,7 @@ PROJ_INCS = $(addprefix -I, $(PROJ_INC_DIRS))
 # Targets
 #
 #============================== Common Rules ===========================================================================
-include make/rules.mk
+include ../../toolchain/make/rules.mk
 
 #============================== Project Build Targets ==================================================================
 all: pre_$(PROJ_NAME) $(PROJ_NAME).a
