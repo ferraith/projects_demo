@@ -8,10 +8,18 @@
 #ifndef QUEUE_DEMO_H_
 #define QUEUE_DEMO_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif  // __cplusplus
+
 ///
 /// @brief      Demonstrates the usage of FreeRTOS queues with the help of two tasks transferring a counter.
 /// @return     None
 ///
 void RunQueueDemo(void);
+
+#ifdef __cplusplus
+}
+#endif  // __cplusplus
 
 #endif  // QUEUE_DEMO_H_
