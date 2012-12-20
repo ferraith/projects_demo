@@ -27,14 +27,11 @@ $(PROJ_NAME).a: $(PROJ_OBJS)
 	$(ECHO) "    CC  $<"
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
 	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
-<<<<<<< HEAD
-=======
 
 %.asm: %.cpp
 	$(ECHO) "    CPP $<"
 	$(CPP) $(CPPFLAGS) $(CXXFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
 	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
->>>>>>> bbf89bcb444b6701919e623661389eab9898aea4
 
 %.asm: %.s
 	$(ECHO) "    CC  $<"
