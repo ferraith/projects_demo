@@ -15,8 +15,8 @@ GCC_DIR      := $(CW_DIR)/gcc/arm-unknown-eabi/bin
 #============================== GNU Compiler Collection ================================================================
 CC          := $(GCC_DIR)/cc1.exe
 CPP         := $(GCC_DIR)/cc1plus.exe
-AR          := $(GCC_DIR)/ar.exe
 AS          := $(GCC_DIR)/as.exe
+AR          := $(GCC_DIR)/ar.exe
 LD          := $(GCC_DIR)/ld.exe
 OBJCOPY     := $(GCC_DIR)/objcopy.exe
 

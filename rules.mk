@@ -20,23 +20,30 @@ endif
 
 $(PROJ_NAME).a: $(PROJ_OBJS)
 	$(foreach PROJ_OBJ_DIR, $(PROJ_OBJ_DIRS), $(CP) -u $(PROJ_OBJ_DIR)/*.o $(BUILD_DIR))
-	$(ECHO) "    AR $(PROJ_OBJS)"
+	$(ECHO) "    AR  $(PROJ_OBJS)"
 	$(AR) $(ARFLAGS) $(BUILD_DIR)/$(PROJ_NAME).a $(addprefix $(BUILD_DIR)/, $(PROJ_OBJS))
 
 %.asm: %.c
-	$(ECHO) "    CC $<"
+	$(ECHO) "    CC  $<"
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
 	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
 
+%.asm: %.cpp
+	$(ECHO) "    CPP $<"
+	$(CPP) $(CPPFLAGS) $(CXXFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
+	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
+
 %.asm: %.s
-	$(ECHO) "    CC $<"
+	$(ECHO) "    CC  $<"
 	$(CC) $(CPPFLAGS) $(SFLAGS) -MD $(BUILD_DIR)/$*.d -MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
 
 %.o: %.asm
-	$(ECHO) "    AS $(BUILD_DIR)/$<"
+	$(ECHO) "    AS  $(BUILD_DIR)/$<"
 	$(AS) $(ASFLAGS) $(BUILD_DIR)/$< -o $(BUILD_DIR)/$@
 
 %.o : %.c
+
+%.o : %.cpp
 
 %.o : %.s
 
