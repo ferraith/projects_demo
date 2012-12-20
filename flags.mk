@@ -12,7 +12,7 @@ CPPFLAGS += -D__ARM_ARCH_7M__
 CPPFLAGS += -D__THUMB
 CPPFLAGS += -D__CROSSWORKS_ARM
 CPPFLAGS += -D__CROSSWORKS_MAJOR_VERSION=2
-CPPFLAGS += -D__CROSSWORKS_MINOR_VERSION=2
+CPPFLAGS += -D__CROSSWORKS_MINOR_VERSION=3
 CPPFLAGS += -D__CROSSWORKS_REVISION=0
 # CPPFLAGS += -D__SHORT_DOUBLES
 
@@ -52,7 +52,6 @@ CFLAGS += -ffunction-sections
 CFLAGS += -fdata-sections
 CFLAGS += -fno-common
 CFLAGS += -Wall
-CFLAGS += -Wextra
 CFLAGS += -mapcs-frame
 CFLAGS += -mno-sched-prolog
 # CFLAGS += -fomit-frame-pointer
@@ -66,7 +65,32 @@ CFLAGS += -O1
 endif
 
 #============================== C++ Compile Flags ======================================================================
-CXXFLAGS  =
+CXXFLAGS  = -fno-exceptions
+CXXFLAGS += -fno-rtti
+CXXFLAGS += -fmessage-length=0
+CXXFLAGS += -mcpu=cortex-m3
+CXXFLAGS += -mthumb
+CXXFLAGS += -mlittle-endian
+CXXFLAGS += -mfpu=vfp
+CXXFLAGS += -mfloat-abi=soft
+CXXFLAGS += -std=c++0x
+CXXFLAGS += -fno-dwarf2-cfi-asm
+CXXFLAGS += -fno-builtin
+CXXFLAGS += -ffunction-sections
+CXXFLAGS += -fdata-sections
+CXXFLAGS += -fno-common
+CXXFLAGS += -Wall
+CXXFLAGS += -mapcs-frame
+CXXFLAGS += -mno-sched-prolog
+# CXXFLAGS += -fomit-frame-pointer
+# CXXFLAGS += -mlong-calls
+# CXXFLAGS += -fshort-double
+
+ifeq ($(BUILD_TYPE),debug)
+CXXFLAGS += -g2
+else ifeq ($(BUILD_TYPE),release)
+CXXFLAGS += -O1
+endif
 
 #============================== Assembler Flags ========================================================================
 ASFLAGS  = --traditional-format
