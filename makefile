@@ -124,6 +124,13 @@ ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
 endif
 
+#============================== Project C++ Compile Flags ==============================================================
+CXXFLAGS +=
+
+ifeq ($(BUILD_TYPE),debug)
+else ifeq ($(BUILD_TYPE),release)
+endif
+
 #============================== Project Assembler Flags ================================================================
 ASFLAGS +=
 
@@ -212,29 +219,33 @@ PROJ_OBJ_DIRS := $(strip $(PROJ_OBJ_DIRS))
 CPPFLAGS      := $(strip $(CPPFLAGS))
 SFLAGS        := $(strip $(SFLAGS))
 CFLAGS        := $(strip $(CFLAGS))
+CXXFLAGS      := $(strip $(CXXFLAGS))
 ASFLAGS       := $(strip $(ASFLAGS))
 LDFLAGS       := $(strip $(LDFLAGS))
 
 #============================== vpath Directories ======================================================================
 vpath %.s $(PROJ_SRC_DIRS)
 vpath %.c $(PROJ_SRC_DIRS)
+vpath %.cpp $(PROJ_SRC_DIRS)
 vpath %.o $(PROJ_OBJ_DIRS) $(BUILD_DIR)
 vpath %.elf $(BUILD_DIR)
 
 #============================== Build Variables ========================================================================
 find_s_files = $(wildcard $(PROJ_SRC_DIR)/*.s)
 find_c_files = $(wildcard $(PROJ_SRC_DIR)/*.c)
+find_cpp_files = $(wildcard $(PROJ_SRC_DIR)/*.cpp)
 find_o_files = $(wildcard $(PROJ_OBJ_DIR)/*.o)
 
 PROJ_S_SRCS := $(notdir $(foreach PROJ_SRC_DIR,$(PROJ_SRC_DIRS),$(find_s_files)))
 PROJ_C_SRCS := $(notdir $(foreach PROJ_SRC_DIR,$(PROJ_SRC_DIRS),$(find_c_files)))
+PROJ_CPP_SRCS := $(notdir $(foreach PROJ_SRC_DIR,$(PROJ_SRC_DIRS),$(find_cpp_files)))
 PROJ_O_SRCS := $(notdir $(foreach PROJ_OBJ_DIR,$(PROJ_OBJ_DIRS),$(find_o_files)))
 
-PROJ_OBJS    = $(strip $(PROJ_S_SRCS:.s=.o) $(PROJ_C_SRCS:.c=.o) $(PROJ_O_SRCS))
+PROJ_OBJS = $(strip $(PROJ_S_SRCS:.s=.o) $(PROJ_C_SRCS:.c=.o) $(PROJ_CPP_SRCS:.cpp=.o) $(PROJ_O_SRCS))
 
-STD_INCS     = $(addprefix -isystem, $(STD_INC_DIRS))
-PLTF_INCS    = $(addprefix -I, $(PLTF_INC_DIRS))
-PROJ_INCS    = $(addprefix -I, $(PROJ_INC_DIRS))
+STD_INCS = $(addprefix -isystem, $(STD_INC_DIRS))
+PLTF_INCS = $(addprefix -I, $(PLTF_INC_DIRS))
+PROJ_INCS = $(addprefix -I, $(PROJ_INC_DIRS))
 
 
 ########################################################################################################################
@@ -249,9 +260,9 @@ all: $(PROJ_NAME).elf
 
 $(PROJ_NAME).elf: pltf_libs pre_$(PROJ_NAME) $(PROJ_OBJS) $(STD_LIBS) $(PLTF_LIBS) $(PROJ_NAME).ld
 	$(foreach PROJ_OBJ_DIR, $(PROJ_OBJ_DIRS), $(CP) -u $(PROJ_OBJ_DIR)/*.o $(BUILD_DIR))
-	$(ECHO) "    LD $(PROJ_OBJS)"
-	$(ECHO) "       $(notdir $(PLTF_LIBS))"
-	$(ECHO) "       $(notdir $(STD_LIBS))"
+	$(ECHO) "    LD  $(PROJ_OBJS)"
+	$(ECHO) "        $(notdir $(PLTF_LIBS))"
+	$(ECHO) "        $(notdir $(STD_LIBS))"
 	$(LD) $(LDFLAGS) --gc-sections "-T$(BUILD_DIR)/$(PROJ_NAME).ld" -Map $(BUILD_DIR)/$(PROJ_NAME).map \
 		-o $(BUILD_DIR)/$(PROJ_NAME).elf --start-group $(addprefix $(BUILD_DIR)/, $(PROJ_OBJS)) $(STD_LIBS) \
 		$(PLTF_LIBS) --end-group
