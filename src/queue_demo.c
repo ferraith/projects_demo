@@ -78,7 +78,7 @@ void TaskB(void *pvParameters) {
 }
 
 
-void run_queue_demo(void) {
+void RunQueueDemo(void) {
 	queue = xQueueCreate(1, sizeof(uint32_t));
 
 	if(queue != NULL) {
