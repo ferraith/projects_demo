@@ -1,6 +1,6 @@
 ########################################################################################################################
 #
-# Project: Demo application
+# Project: Demo Application
 #
 # Description:
 #	Makefile used to build the startup code and main function of the demo application including all libraries.
@@ -71,6 +71,14 @@ PLTF_LIB_DIRS += platform/freertos
 PLTF_INC_DIRS += platform/freertos/src/include
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
+# LPC17xx
+PLTF_LIB_DIRS += platform/lwip
+PLTF_INC_DIRS += platform/lwip/src/include/ipv4/lwip
+PLTF_INC_DIRS += platform/lwip/src/include/lwip
+PLTF_INC_DIRS += platform/lwip/src/include/netif
+PLTF_INC_DIRS += platform/lwip/src/include/posix
+PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
+PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
 
 ########################################################################################################################
 #
