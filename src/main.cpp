@@ -6,9 +6,7 @@
 ///
 
 #include "FreeRTOS.h"
-extern "C" {
-#include "board.h"
-}
+#include "console.h"
 #include "queue_demo.h"
 #include "task.h"
 
@@ -17,7 +15,8 @@ extern "C" {
 ///
 void InitEcu(void) {
 	// Initialize UART console
-	console_init();
+  Console console;
+  console.Init();
 
 	// Initialize ...
 }

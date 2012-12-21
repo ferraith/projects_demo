@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 #include "FreeRTOS.h"
-#include "board.h"
+#include "console.h"
 #include "queue.h"
 #include "task.h"
 
@@ -29,6 +29,7 @@ void TaskA(void *pvParameters) {
 	uint32_t counter = 0;
 	int init = 1;
 	char console_string[50];
+	Console console;
 
 	last_wake_time = xTaskGetTickCount();
 
@@ -44,7 +45,7 @@ void TaskA(void *pvParameters) {
 			counter++;
 			sprintf(console_string, "Task A: Received %d\t Will Send %d\r\n", temp, counter);
 			xQueueSend(queue, &counter, 0);
-			console_sendString((uint8_t*)console_string);
+			console.SendString((uint8_t*)console_string);
 		}
 		vTaskDelayUntil(&last_wake_time, 100 * configTICK_RATE_HZ / 1000);
 	}
@@ -62,6 +63,7 @@ void TaskB(void *pvParameters) {
 	last_wake_time = xTaskGetTickCount();
 	uint32_t counter = 0;
 	char console_string[50];
+	Console console;
 
 	for(;;) {
 		uint32_t temp;
@@ -70,7 +72,7 @@ void TaskB(void *pvParameters) {
 		counter++;
 		sprintf(console_string, "Task B: Received %d\t Will Send %d\r\n", temp, counter);
 		xQueueSend(queue, &counter, 0);
-		console_sendString((uint8_t*)console_string);
+		console.SendString((uint8_t*)console_string);
 
 		vTaskDelayUntil(&last_wake_time, 100 * configTICK_RATE_HZ / 1000);
 	}
