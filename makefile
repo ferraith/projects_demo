@@ -61,10 +61,10 @@ PLTF_LIB_DIRS += platform/lpc17xx
 PLTF_INC_DIRS += platform/lpc17xx/src/include
 PLTF_LIBS     += platform/lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/lpc17xx.a
 
-# AOAA Kit
-PLTF_LIB_DIRS += platform/aoaa
-PLTF_INC_DIRS += platform/aoaa/src/include
-PLTF_LIBS     += platform/aoaa/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa.a
+# AOAA Board
+PLTF_LIB_DIRS += platform/aoaa_board
+PLTF_INC_DIRS += platform/aoaa_board/src
+PLTF_LIBS     += platform/aoaa_board/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa_board.a
 
 # FreeRTOS
 PLTF_LIB_DIRS += platform/freertos
