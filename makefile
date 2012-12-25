@@ -71,10 +71,10 @@ PLTF_LIB_DIRS += platform/freertos
 PLTF_INC_DIRS += platform/freertos/src/include
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
-# LPC17xx
+# lwIP
 PLTF_LIB_DIRS += platform/lwip
-PLTF_INC_DIRS += platform/lwip/src/include/ipv4/lwip
-PLTF_INC_DIRS += platform/lwip/src/include/lwip
+PLTF_INC_DIRS += platform/lwip/src/include
+PLTF_INC_DIRS += platform/lwip/src/include/ipv4
 PLTF_INC_DIRS += platform/lwip/src/include/netif
 PLTF_INC_DIRS += platform/lwip/src/include/posix
 PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
@@ -86,9 +86,13 @@ PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
 #
 #============================== Source Directories =====================================================================
 PROJ_SRC_DIRS  = src
+PROJ_SRC_DIRS += src/base
+PROJ_SRC_DIRS += src/demos
 
 #============================== Header Directories =====================================================================
-PROJ_INC_DIRS  = src/include
+PROJ_INC_DIRS  = src
+PROJ_INC_DIRS += src/base
+PROJ_INC_DIRS += src/demos
 
 #============================== Object Directories =====================================================================
 PROJ_OBJ_DIRS  =
