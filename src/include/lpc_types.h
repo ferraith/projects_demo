@@ -43,6 +43,7 @@
 
 /* Includes ------------------------------------------------------------------- */
 #include <stdint.h>
+#include <stddef.h>
 
 
 /* Public Types --------------------------------------------------------------- */
@@ -131,11 +132,6 @@ typedef int32_t(*PFI)();
 #undef _BITMASK
 /* Bitmask creation macro */
 #define _BITMASK(field_width) ( _BIT(field_width) - 1)
-
-/* NULL pointer */
-#ifndef NULL
-#define NULL ((void*) 0)
-#endif
 
 /* Number of elements in an array */
 #define NELEMENTS(array)  (sizeof (array) / sizeof (array[0]))
