@@ -34,6 +34,9 @@ PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 # LPC17xx
 PLTF_INC_DIRS += ../lpc17xx/src/include
 
+# Base
+PLTF_INC_DIRS += ../../src/base
+
 
 ########################################################################################################################
 #
