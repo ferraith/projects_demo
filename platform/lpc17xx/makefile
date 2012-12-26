@@ -68,7 +68,7 @@ else ifeq ($(BUILD_TYPE),release)
 endif
 
 #============================== Project C Compile Flags ================================================================
-CFLAGS += -ffreestanding
+CFLAGS +=
 
 ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
