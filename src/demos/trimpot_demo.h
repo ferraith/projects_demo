@@ -1,13 +1,15 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef TRIMPOT_DEMO_H_
-#define TRIMPOT_DEMO_H_
+#ifndef DEMOS_TRIMPOT_DEMO_H_
+#define DEMOS_TRIMPOT_DEMO_H_
 
 #include "types.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "lpc17xx_uart.h"
+
+namespace demo {
 
 ///
 /// @brief         Provides methods to send and receive data to or from a console connected via UART to a
@@ -19,10 +21,6 @@ class TrimpotDemo {
   /// @brief         Constructor
   ///
   TrimpotDemo();
-  ///
-  /// @brief         Destructor
-  ///
-  virtual ~TrimpotDemo() {}
   ///
   ///
   ///
@@ -42,4 +40,6 @@ class TrimpotDemo {
   DISALLOW_COPY_AND_ASSIGN(TrimpotDemo);
 };
 
-#endif  // TRIMPOT_DEMO_H_
+}  // namespace demo
+
+#endif  // DEMOS_TRIMPOT_DEMO_H_

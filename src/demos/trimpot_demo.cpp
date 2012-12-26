@@ -10,7 +10,10 @@
 #include "console.h"
 
 using ::std::abs;
+using ::aoaa_board::Console;
+using ::aoaa_board::Trimpot;
 
+namespace demo {
 
 TrimpotDemo::TrimpotDemo() : task_handle_(NULL), current_value_(0) {}
 
@@ -45,7 +48,8 @@ void TrimpotDemo::Task() {
 
 
 void TrimpotDemo::Run() {
-  xTaskCreate(TrimpotTaskWrapper, (const signed char *) "TrimpotDemo", 2 * configMINIMAL_STACK_SIZE, (void *) this,
+  xTaskCreate(TrimpotTaskWrapper, (const signed char *) "TrimpotDemo", ( ( unsigned short ) 100 ), (void *) this,
               (tskIDLE_PRIORITY + 1), &task_handle_);
 }
 
+}  // namespace demo

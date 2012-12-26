@@ -3,45 +3,56 @@
 
 #include "FreeRTOS.h"
 #include "console.h"
+#include "queue.h"
 #include "queue_demo.h"
 #include "trimpot_demo.h"
 #include "task.h"
 
-xQueueHandle queue_handle;
-QueueDemo *queue_demo;
+using ::demo::QueueDemo;
+using ::demo::TrimpotDemo;
+using ::aoaa_board::Console;
 
 ///
+/// @brief         Initialize peripherals of microcontroller and board.
+/// @return        None
 ///
-///
-void InitEcu(void) {
-	// Initialize UART console
+void InitEcu() {
+  // Initialize UART console
   Console console;
   console.Init();
 
-	// Initialize ...
+  // Initialize ...
 }
 
+
 ///
+/// @brief         Entry point of program execution.
+/// @return        None
 ///
-///
-int main(void) {
-	// Initialize ECU
-	InitEcu();
+int main() {
 
-	// Run queue demo
-	queue_handle = xQueueCreate(10, sizeof(uint32_t));
-	QueueDemo *queue_demo2 = new QueueDemo(); //(queue_handle);
-	queue_demo = new QueueDemo[1050]; //(queue_handle);
-	queue_demo->Run();
+  // Initialize ECU
+  InitEcu();
 
-	// Run trimpot demo
-	TrimpotDemo trimpot_demo;
-	trimpot_demo.Run();
+  // Run queue demo
+  xQueueHandle queue_handle = xQueueCreate(1, sizeof(uint32_t));
+  QueueDemo *queue_demo = new QueueDemo(queue_handle);
+  queue_demo->Run();
 
-	// Start the tasks running
-	vTaskStartScheduler();
+  // Run trimpot demo
+  TrimpotDemo *trimpot_demo = new TrimpotDemo();
+  trimpot_demo->Run();
 
-	// If all is well this point will never be reached
-	for(;;);
-	return 0;
+  // Start task scheduling
+  vTaskStartScheduler();
+
+  // Delete demos
+  delete queue_demo;
+  vQueueDelete(queue_handle);
+  delete trimpot_demo;
+
+  // If all is well this point will never be reached
+  for(;;);
+
+  return 0;
 }

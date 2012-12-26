@@ -1,9 +1,11 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef TCPECHO_DEMO_H_
-#define TCPECHO_DEMO_H_
+#ifndef DEMOS_TCPECHO_DEMO_H_
+#define DEMOS_TCPECHO_DEMO_H_
 
+namespace demo {
 
+}  // namespace demo
 
-#endif //  TCPECHO_DEMO_H_
+#endif //  DEMOS_TCPECHO_DEMO_H_

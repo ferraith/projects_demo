@@ -7,8 +7,11 @@
 
 #include "console.h"
 
+using ::aoaa_board::Console;
+
+namespace demo {
+
 QueueDemo::QueueDemo(xQueueHandle queue_handle) : queue_handle_(queue_handle), task_a_handle_(NULL), task_b_handle_(NULL) {}
-QueueDemo::QueueDemo() : queue_handle_(NULL), task_a_handle_(NULL), task_b_handle_(NULL) {}
 
 
 extern "C" void TaskAWrapper(void* parm) {
@@ -23,9 +26,9 @@ extern "C" void TaskBWrapper(void* parm) {
 
 void QueueDemo::TaskA() {
   portTickType last_wake_time;
-  uint32_t counter = 0;
+  uint16_t counter = 0;
   int init = 1;
-  char console_string[50];
+  char console_string[40];
   Console console;
 
   last_wake_time = xTaskGetTickCount();
@@ -33,15 +36,15 @@ void QueueDemo::TaskA() {
   for(;;) {
     if(init == 1) {
       // Initial send
-      xQueueSend(queue_handle, &counter, 0);
+      xQueueSend(queue_handle_, &counter, 0);
       init = 0;
     } else {
-      uint32_t temp;
-      xQueueReceive(queue_handle, &counter, portMAX_DELAY);
+      uint16_t temp;
+      xQueueReceive(queue_handle_, &counter, portMAX_DELAY);
       temp = counter;
       counter++;
-      sprintf(console_string, "QueueDemo: Task A received %d and will send %d\r\n", temp, counter);
-      xQueueSend(queue_handle, &counter, 0);
+      sprintf(console_string, "QueueDemo: A %d --> %d\r\n", temp, counter);
+      xQueueSend(queue_handle_, &counter, 0);
       console.SendString(console_string);
     }
     vTaskDelayUntil(&last_wake_time, 1000 * configTICK_RATE_HZ / 1000);
@@ -54,17 +57,17 @@ void QueueDemo::TaskB() {
   portTickType last_wake_time;
   vTaskDelay(500 * configTICK_RATE_HZ / 1000);
   last_wake_time = xTaskGetTickCount();
-  uint32_t counter = 0;
-  char console_string[50];
+  uint16_t counter = 0;
+  char console_string[40];
   Console console;
 
   for(;;) {
-    uint32_t temp;
-    xQueueReceive(queue_handle, &counter, portMAX_DELAY);
+    uint16_t temp;
+    xQueueReceive(queue_handle_, &counter, portMAX_DELAY);
     temp = counter;
     counter++;
-    sprintf(console_string, "QueueDemo: Task B received %d and will send %d\r\n", temp, counter);
-    xQueueSend(queue_handle, &counter, 0);
+    sprintf(console_string, "QueueDemo: B %d --> %d\r\n", temp, counter);
+    xQueueSend(queue_handle_, &counter, 0);
     console.SendString(console_string);
 
     vTaskDelayUntil(&last_wake_time, 1000 * configTICK_RATE_HZ / 1000);
@@ -74,10 +77,12 @@ void QueueDemo::TaskB() {
 
 
 void QueueDemo::Run() {
-  if(queue_handle != NULL) {
-    xTaskCreate(TaskAWrapper, (const signed char *) "Task A", (2 * configMINIMAL_STACK_SIZE), (void *) this,
+  if(queue_handle_ != NULL) {
+    xTaskCreate(TaskAWrapper, (const signed char *) "Task A", ( ( unsigned short ) 83 ), (void *) this,
                 (tskIDLE_PRIORITY + 1), &task_a_handle_);
-    xTaskCreate(TaskBWrapper, (const signed char *) "Task B", (2 * configMINIMAL_STACK_SIZE), (void *) this,
+    xTaskCreate(TaskBWrapper, (const signed char *) "Task B", ( ( unsigned short ) 83 ), (void *) this,
                 (tskIDLE_PRIORITY + 1), &task_b_handle_);
   }
 }
+
+}  // namespace demo

@@ -1,8 +1,8 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef QUEUE_DEMO_H_
-#define QUEUE_DEMO_H_
+#ifndef DEMOS_QUEUE_DEMO_H_
+#define DEMOS_QUEUE_DEMO_H_
 
 #include <cstddef>
 
@@ -11,7 +11,7 @@
 #include "task.h"
 #include "types.h"
 
-extern xQueueHandle queue_handle;
+namespace demo {
 
 ///
 /// @brief         Demonstrates the usage of FreeRTOS queues with the help of two tasks transferring a counter
@@ -22,11 +22,6 @@ class QueueDemo {
   /// @brief         Constructor
   ///
   QueueDemo(xQueueHandle queue_handle);
-  QueueDemo();
-  ///
-  /// @brief         Destructor
-  ///
-  virtual ~QueueDemo() {};
   ///
   /// @brief         Implementation of a FreeRTOS task receiving and sending a counter. This task starts sending the
   ///                counter
@@ -55,4 +50,6 @@ class QueueDemo {
   DISALLOW_COPY_AND_ASSIGN(QueueDemo);
 };
 
-#endif  // QUEUE_DEMO_H_
+}  // namespace demo
+
+#endif  // DEMOS_QUEUE_DEMO_H_
