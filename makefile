@@ -72,13 +72,13 @@ PLTF_INC_DIRS += platform/freertos/src/include
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
 # lwIP
-PLTF_LIB_DIRS += platform/lwip
-PLTF_INC_DIRS += platform/lwip/src/include
-PLTF_INC_DIRS += platform/lwip/src/include/ipv4
-PLTF_INC_DIRS += platform/lwip/src/include/netif
-PLTF_INC_DIRS += platform/lwip/src/include/posix
-PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
-PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
+# PLTF_LIB_DIRS += platform/lwip
+# PLTF_INC_DIRS += platform/lwip/src/include
+# PLTF_INC_DIRS += platform/lwip/src/include/ipv4
+# PLTF_INC_DIRS += platform/lwip/src/include/netif
+# PLTF_INC_DIRS += platform/lwip/src/include/posix
+# PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
+# PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
 
 ########################################################################################################################
 #
@@ -268,8 +268,8 @@ $(PROJ_NAME).elf: pltf_libs pre_$(PROJ_NAME) $(PROJ_OBJS) $(STD_LIBS) $(PLTF_LIB
 	$(ECHO) "        $(notdir $(PLTF_LIBS))"
 	$(ECHO) "        $(notdir $(STD_LIBS))"
 	$(LD) $(LDFLAGS) --gc-sections "-T$(BUILD_DIR)/$(PROJ_NAME).ld" -Map $(BUILD_DIR)/$(PROJ_NAME).map \
-		-o $(BUILD_DIR)/$(PROJ_NAME).elf --start-group $(addprefix $(BUILD_DIR)/, $(PROJ_OBJS)) $(STD_LIBS) \
-		$(PLTF_LIBS) --end-group
+		-o $(BUILD_DIR)/$(PROJ_NAME).elf --start-group $(addprefix $(BUILD_DIR)/, $(PROJ_OBJS)) $(PLTF_LIBS) \
+		$(STD_LIBS) --end-group
 ifeq ($(PLACEMENT_TYPE),flash)
 	$(ECHO) "    CROSSSCRIPT $(PROJ_NAME).elf"
 	$(CROSSSCRIPT) -load $(LINK_PATCH) "patch('$(BUILD_DIR)/$(PROJ_NAME).elf');"
