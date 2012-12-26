@@ -8,7 +8,7 @@
 #============================== Optimization: None =====================================================================
 STD_INC_DIRS  = $(CWI_DIR)
 STD_LIBS  = $(CWL_DIR)/libc_v7m_t_le_eabi.a                          # Crossworks Standard C Library
-STD_LIBS += $(CWL_DIR)/libcpp_v7m_t_le_eabi.a                        # Crossworks Standard C++ Library
+# STD_LIBS += $(CWL_DIR)/libcpp_v7m_t_le_eabi.a                      # Crossworks Standard C++ Library
 # STD_LIBS += $(CWL_DIR)/libm_v7m_t_le_eabi.a                        # Crossworks Standard C Math Library
 # STD_LIBS += $(CWL_DIR)/libgccxceptrtti_v7m_t_le_eabi.a             # GCC Exception and RTTI Library
 STD_LIBS += $(CWL_DIR)/libc_user_libc_v7m_t_le_eabi.a                # Crossworks Multi Threaded Library
