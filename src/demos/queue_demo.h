@@ -8,9 +8,9 @@
 #include <cstddef>
 
 #include "FreeRTOS.h"
+#include "class_helper.h"
 #include "queue.h"
 #include "task.h"
-#include "types.h"
 
 namespace demo {
 

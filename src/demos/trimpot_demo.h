@@ -7,9 +7,9 @@
 #include <stdint.h>
 
 #include "FreeRTOS.h"
+#include "class_helper.h"
 #include "lpc17xx_uart.h"
 #include "task.h"
-#include "types.h"
 
 namespace demo {
 
