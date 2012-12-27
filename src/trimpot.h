@@ -4,7 +4,7 @@
 #ifndef TRIMPOT_H_
 #define TRIMPOT_H_
 
-#include "stdint.h"
+#include <stdint.h>
 
 #include "class_helper.h"
 

@@ -4,7 +4,7 @@
 #ifndef CONSOLE_H_
 #define CONSOLE_H_
 
-#include "stdint.h"
+#include <stdint.h>
 
 #include "class_helper.h"
 #include "lpc17xx_uart.h"
