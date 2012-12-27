@@ -27,16 +27,15 @@ include ../../toolchain/make/toolchain.mk
 include ../../toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
+# Common
+PLTF_INC_DIRS  = ../common/src
+
 # CMSIS-CORE LPC17xx
-PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/src/core/include
+PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/core/include
 PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 
 # LPC17xx
 PLTF_INC_DIRS += ../lpc17xx/src/include
-
-# Base
-PLTF_INC_DIRS += ../../src/base
-
 
 ########################################################################################################################
 #

@@ -4,7 +4,9 @@
 #ifndef TRIMPOT_H_
 #define TRIMPOT_H_
 
-#include "types.h"
+#include <stdint.h>
+
+#include "class_helper.h"
 
 namespace aoaa_board {
 
