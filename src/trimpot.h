@@ -8,6 +8,8 @@
 
 #include "class_helper.h"
 
+namespace aoaa_board {
+
 ///
 /// @brief         Provides methods to
 ///
@@ -17,10 +19,6 @@ class Trimpot {
   /// @brief         Constructor
   ///
   Trimpot();
-  ///
-  /// @brief         Destructor
-  ///
-  virtual ~Trimpot() {}
   ///
   /// @brief         Initialize analog input for trimming potentiometer
   /// @return        None
@@ -34,5 +32,7 @@ class Trimpot {
   /// Disables the copy constructor and assignment operator
   DISALLOW_COPY_AND_ASSIGN(Trimpot);
 };
+
+}  // namespace aoaa_board
 
 #endif  // TRIMPOT_H_

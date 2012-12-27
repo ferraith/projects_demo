@@ -6,6 +6,7 @@
 #include "lpc17xx_adc.h"
 #include "lpc17xx_pinsel.h"
 
+namespace aoaa_board {
 
 Trimpot::Trimpot() {}
 
@@ -38,3 +39,5 @@ uint16_t Trimpot::Get() {
   while (!(ADC_ChannelGetStatus(LPC_ADC, ADC_CHANNEL_5, ADC_DATA_DONE)));
   return ADC_ChannelGetData(LPC_ADC, ADC_CHANNEL_5);
 }
+
+}  // namespace aoaa_board
