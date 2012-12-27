@@ -6,8 +6,8 @@
 #include <cstdlib>
 #include <stdio.h>
 
-#include "trimpot.h"
 #include "console.h"
+#include "trimpot.h"
 
 using ::std::abs;
 using ::aoaa_board::Console;

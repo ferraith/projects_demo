@@ -4,10 +4,12 @@
 #ifndef DEMOS_TRIMPOT_DEMO_H_
 #define DEMOS_TRIMPOT_DEMO_H_
 
-#include "types.h"
+#include <stdint.h>
+
 #include "FreeRTOS.h"
-#include "task.h"
 #include "lpc17xx_uart.h"
+#include "task.h"
+#include "types.h"
 
 namespace demo {
 

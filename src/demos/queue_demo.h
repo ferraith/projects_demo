@@ -4,6 +4,7 @@
 #ifndef DEMOS_QUEUE_DEMO_H_
 #define DEMOS_QUEUE_DEMO_H_
 
+#include <stdint.h>
 #include <cstddef>
 
 #include "FreeRTOS.h"
