@@ -9,8 +9,11 @@
 
 #include "FreeRTOS.h"
 #include "class_helper.h"
+#include "console.h"
 #include "queue.h"
 #include "task.h"
+
+using ::aoaa_board::Console;
 
 namespace demo {
 
@@ -22,7 +25,7 @@ class QueueDemo {
   ///
   /// @brief         Constructor
   ///
-  QueueDemo(xQueueHandle queue_handle);
+  QueueDemo(xQueueHandle queue_handle, Console *console);
   ///
   /// @brief         Implementation of a FreeRTOS task receiving and sending a counter. This task starts sending the
   ///                counter
@@ -42,11 +45,12 @@ class QueueDemo {
   xQueueHandle queue_handle_;
 
  private:
+  /// Console
+  Console *console_;
   /// Task handle referencing Task A
   xTaskHandle task_a_handle_;
   /// Task handle referencing Task B
   xTaskHandle task_b_handle_;
-
   /// Disables the copy constructor and assignment operator
   DISALLOW_COPY_AND_ASSIGN(QueueDemo);
 };

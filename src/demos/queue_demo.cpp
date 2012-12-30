@@ -5,31 +5,27 @@
 
 #include <stdio.h>
 
-#include "console.h"
-
-using ::aoaa_board::Console;
-
 namespace demo {
 
-QueueDemo::QueueDemo(xQueueHandle queue_handle) : queue_handle_(queue_handle), task_a_handle_(NULL), task_b_handle_(NULL) {}
-
+QueueDemo::QueueDemo(xQueueHandle queue_handle, Console *console)
+    : queue_handle_(queue_handle),
+      console_(console),
+      task_a_handle_(NULL),
+      task_b_handle_(NULL) {}
 
 extern "C" void TaskAWrapper(void* parm) {
   (static_cast<QueueDemo *>(parm))->TaskA();
 }
 
-
 extern "C" void TaskBWrapper(void* parm) {
   (static_cast<QueueDemo *>(parm))->TaskB();
 }
-
 
 void QueueDemo::TaskA() {
   portTickType last_wake_time;
   uint16_t counter = 0;
   int init = 1;
   char console_string[40];
-  Console console;
 
   last_wake_time = xTaskGetTickCount();
 
@@ -45,21 +41,18 @@ void QueueDemo::TaskA() {
       counter++;
       sprintf(console_string, "QueueDemo: A %d --> %d\r\n", temp, counter);
       xQueueSend(queue_handle_, &counter, 0);
-      console.SendString(console_string);
+      console_->SendString(console_string);
     }
-    vTaskDelayUntil(&last_wake_time, 1000 * configTICK_RATE_HZ / 1000);
+    vTaskDelayUntil(&last_wake_time, 1000 * portTICK_RATE_MS);
   }
   vTaskDelete(NULL);
 }
 
-
 void QueueDemo::TaskB() {
   portTickType last_wake_time;
-  vTaskDelay(500 * configTICK_RATE_HZ / 1000);
   last_wake_time = xTaskGetTickCount();
   uint16_t counter = 0;
   char console_string[40];
-  Console console;
 
   for(;;) {
     uint16_t temp;
@@ -68,19 +61,18 @@ void QueueDemo::TaskB() {
     counter++;
     sprintf(console_string, "QueueDemo: B %d --> %d\r\n", temp, counter);
     xQueueSend(queue_handle_, &counter, 0);
-    console.SendString(console_string);
+    console_->SendString(console_string);
 
-    vTaskDelayUntil(&last_wake_time, 1000 * configTICK_RATE_HZ / 1000);
+    vTaskDelayUntil(&last_wake_time, 1000 * portTICK_RATE_MS);
   }
   vTaskDelete(NULL);
 }
 
-
 void QueueDemo::Run() {
   if(queue_handle_ != NULL) {
-    xTaskCreate(TaskAWrapper, (const signed char *) "Task A", ( ( unsigned short ) 83 ), (void *) this,
-                (tskIDLE_PRIORITY + 1), &task_a_handle_);
-    xTaskCreate(TaskBWrapper, (const signed char *) "Task B", ( ( unsigned short ) 83 ), (void *) this,
+    xTaskCreate(TaskAWrapper, (const signed char *) "Task A", ( ( unsigned short ) 85 ), (void *) this,
+                (tskIDLE_PRIORITY + 2), &task_a_handle_);
+    xTaskCreate(TaskBWrapper, (const signed char *) "Task B", ( ( unsigned short ) 85 ), (void *) this,
                 (tskIDLE_PRIORITY + 1), &task_b_handle_);
   }
 }

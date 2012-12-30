@@ -8,8 +8,11 @@
 
 #include "FreeRTOS.h"
 #include "class_helper.h"
+#include "console.h"
 #include "lpc17xx_uart.h"
 #include "task.h"
+
+using ::aoaa_board::Console;
 
 namespace demo {
 
@@ -22,7 +25,7 @@ class TrimpotDemo {
   ///
   /// @brief         Constructor
   ///
-  TrimpotDemo();
+  explicit TrimpotDemo(Console *console);
   ///
   ///
   ///
@@ -33,6 +36,8 @@ class TrimpotDemo {
   void Run();
 
  private:
+  ///
+  Console *console_;
   ///
   xTaskHandle task_handle_;
   ///
