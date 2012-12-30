@@ -37,6 +37,10 @@ PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 # LPC17xx
 PLTF_INC_DIRS += ../lpc17xx/src/include
 
+# FreeRTOS
+PLTF_INC_DIRS += ../freertos/src/core/include
+PLTF_INC_DIRS += ../freertos/src/port/include
+
 ########################################################################################################################
 #
 # Project Files
