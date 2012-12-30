@@ -157,7 +157,7 @@ ifeq ($(PLACEMENT_TYPE),$(filter $(PLACEMENT_TYPE),ram))
 LDFLAGS += -s
 endif
 
-LDFLAGS += -defsym __STACKSIZE__=256                                    # Main Stack Size
+LDFLAGS += -defsym __STACKSIZE__=384                                    # Main Stack Size
 LDFLAGS += -defsym __STACKSIZE_PROCESS__=0                              # Process Stack Size
 LDFLAGS += -defsym __HEAPSIZE__=0                                       # Heap Size
 
