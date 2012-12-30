@@ -10,7 +10,6 @@
       </file>
     </folder>
     <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../src">
-      <folder Name="base" filter="*.h;*.c;*.cpp;*.s;*.o" path="../src/base"/>
       <folder Name="demos" filter="*.h;*.c;*.cpp;*.s;*.o" path="../src/demos"/>
     </folder>
     <folder Name="platform">
@@ -41,6 +40,9 @@
           <folder Name="support_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/support_functions"/>
           <folder Name="transform_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/transform_functions"/>
         </folder>
+      </folder>
+      <folder Name="common">
+        <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/common/src"/>
       </folder>
       <folder Name="freertos">
         <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/freertos/src">
