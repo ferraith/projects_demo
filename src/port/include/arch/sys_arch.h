@@ -35,10 +35,10 @@
 #include "lwip/opt.h"
 
 #if NO_SYS == 0
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/queue.h"
+#include "freertos/semphr.h"
 
 #define SYS_MBOX_NULL					( ( xQueueHandle ) NULL )
 #define SYS_SEM_NULL					( ( xSemaphoreHandle ) NULL )
