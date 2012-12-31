@@ -1,8 +1,8 @@
 // Common Source Files
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef CLASS_HELPER_H_
-#define CLASS_HELPER_H_
+#ifndef COMMON_CLASS_HELPER_H_
+#define COMMON_CLASS_HELPER_H_
 
 ///
 /// @brief         A macro to disallow the copy constructor and operator= function. This should be used in the private
@@ -14,4 +14,4 @@
   class_name(const class_name&);             \
   void operator=(const class_name&)
 
-#endif  // CLASS_HELPER_H_
+#endif  // COMMON_CLASS_HELPER_H_
