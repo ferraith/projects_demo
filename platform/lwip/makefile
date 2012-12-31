@@ -28,12 +28,12 @@ include ../../toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
 # CMSIS-CORE LPC17xx
-PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/src/core/include
-PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
+PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/include
 
 # FreeRTOS
-PLTF_INC_DIRS += ../freertos/src/core/include
-PLTF_INC_DIRS += ../freertos/src/port/include
+PLTF_INC_DIRS += ../freertos/include
+PLTF_INC_DIRS += ../freertos/src/core
+PLTF_INC_DIRS += ../freertos/src/port
 
 ########################################################################################################################
 #

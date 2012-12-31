@@ -1,12 +1,12 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#include "core/include/FreeRTOS.h"
 #include "aoaa_board/console.h"
-#include "queue.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/queue.h"
+#include "freertos/task.h"
 #include "demo/queue_demo.h"
 #include "demo/trimpot_demo.h"
-#include "task.h"
 
 using ::demo::QueueDemo;
 using ::demo::TrimpotDemo;
@@ -62,7 +62,7 @@ int main() {
   delete console;
 
   // If all is well this point will never be reached
-  for(;;);
+  for (;;);
 
   return 0;
 }

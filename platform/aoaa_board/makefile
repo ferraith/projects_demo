@@ -31,18 +31,17 @@ include ../../toolchain/make/libs.mk
 PLTF_INC_DIRS  = ../common/include
 
 # CMSIS-CORE LPC17xx
-PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src
-PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/core/include
-PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
+PLTF_INC_DIRS += ../cmsis_core_lpc17xx/include
+PLTF_INC_DIRS += ../cmsis_core_lpc17xx/include/cmsis_core_lpc17xx
 
 # LPC17xx
+PLTF_INC_DIRS += ../lpc17xx/include
 PLTF_INC_DIRS += ../lpc17xx/src
-PLTF_INC_DIRS += ../lpc17xx/src/include
 
 # FreeRTOS
-PLTF_INC_DIRS += ../freertos/src
-PLTF_INC_DIRS += ../freertos/src/core/include
-PLTF_INC_DIRS += ../freertos/src/port/include
+PLTF_INC_DIRS += ../freertos/include
+PLTF_INC_DIRS += ../freertos/src/core
+PLTF_INC_DIRS += ../freertos/src/port
 
 ########################################################################################################################
 #

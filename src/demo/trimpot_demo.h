@@ -6,11 +6,11 @@
 
 #include <stdint.h>
 
-#include "FreeRTOS.h"
-#include "common/class_helper.h"
 #include "aoaa_board/console.h"
-#include "lpc17xx_uart.h"
-#include "task.h"
+#include "common/class_helper.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "lpc17xx/lpc17xx_uart.h"
 
 using ::aoaa_board::Console;
 

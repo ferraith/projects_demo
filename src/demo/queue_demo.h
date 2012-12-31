@@ -7,11 +7,11 @@
 #include <stdint.h>
 #include <cstddef>
 
-#include "FreeRTOS.h"
-#include "common/class_helper.h"
 #include "aoaa_board/console.h"
-#include "queue.h"
-#include "task.h"
+#include "common/class_helper.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/queue.h"
+#include "freertos/task.h"
 
 using ::aoaa_board::Console;
 

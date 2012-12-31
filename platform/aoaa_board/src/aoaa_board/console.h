@@ -6,10 +6,10 @@
 
 #include <stdint.h>
 
-#include "core/include/FreeRTOS.h"
 #include "common/class_helper.h"
-#include "include/lpc17xx_uart.h"
-#include "core/include/semphr.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/semphr.h"
+#include "lpc17xx/lpc17xx_uart.h"
 
 namespace aoaa_board {
 

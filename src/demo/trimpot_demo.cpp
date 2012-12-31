@@ -3,8 +3,8 @@
 
 #include "demo/trimpot_demo.h"
 
-#include <cstdlib>
 #include <stdio.h>
+#include <cstdlib>
 
 #include "aoaa_board/trimpot.h"
 
@@ -30,9 +30,9 @@ void TrimpotDemo::Task() {
   last_wake_time = xTaskGetTickCount();
   trimpot.Init();
 
-  for(;;) {
+  for (;;) {
     value = trimpot.Get();
-    if(abs(current_value_ - value) > 1) {
+    if (abs(current_value_ - value) > 1) {
       sprintf(console_string, "TrimpotDemo: Read trimpot value %d\r\n", value);
       console_->SendString(console_string);
       current_value_ = value;
@@ -44,7 +44,7 @@ void TrimpotDemo::Task() {
 
 
 void TrimpotDemo::Run() {
-  xTaskCreate(TrimpotTaskWrapper, (const signed char *) "TrimpotDemo", ( ( unsigned short ) 90 ), (void *) this,
+  xTaskCreate(TrimpotTaskWrapper, (const signed char *) "TrimpotDemo", ((unsigned short) 90), (void *) this,
               (tskIDLE_PRIORITY + 1), &task_handle_);
 }
 

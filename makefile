@@ -50,19 +50,19 @@ PLTF_INC_DIRS  = platform/common/include
 
 # CMSIS-CORE LPC17xx
 PLTF_LIB_DIRS  = platform/cmsis_core_lpc17xx
-PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/src/core/include
-PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/src/device/include
+PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/include
+PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/include/cmsis_core_lpc17xx
 PLTF_LIBS      = platform/cmsis_core_lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_core_lpc17xx.a
 
 # CMSIS-DSP
-# PLTF_LIB_DIRS += platform/cmsis_dsp
-# PLTF_INC_DIRS += platform/cmsis_dsp/src/include
-# PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
+PLTF_LIB_DIRS += platform/cmsis_dsp
+PLTF_INC_DIRS += platform/cmsis_dsp/include
+PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
 
 # LPC17xx
 PLTF_LIB_DIRS += platform/lpc17xx
+PLTF_INC_DIRS += platform/lpc17xx/include
 PLTF_INC_DIRS += platform/lpc17xx/src
-PLTF_INC_DIRS += platform/lpc17xx/src/include
 PLTF_LIBS     += platform/lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/lpc17xx.a
 
 # AOAA Board
@@ -72,19 +72,19 @@ PLTF_LIBS     += platform/aoaa_board/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa_board.
 
 # FreeRTOS
 PLTF_LIB_DIRS += platform/freertos
-PLTF_INC_DIRS += platform/freertos/src
-PLTF_INC_DIRS += platform/freertos/src/core/include
-PLTF_INC_DIRS += platform/freertos/src/port/include
+PLTF_INC_DIRS += platform/freertos/include
+PLTF_INC_DIRS += platform/freertos/src/core
+PLTF_INC_DIRS += platform/freertos/src/port
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
 # lwIP
-# PLTF_LIB_DIRS += platform/lwip
-# PLTF_INC_DIRS += platform/lwip/src/include
-# PLTF_INC_DIRS += platform/lwip/src/include/ipv4
-# PLTF_INC_DIRS += platform/lwip/src/include/netif
-# PLTF_INC_DIRS += platform/lwip/src/include/posix
-# PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
-# PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
+PLTF_LIB_DIRS += platform/lwip
+PLTF_INC_DIRS += platform/lwip/src/include
+PLTF_INC_DIRS += platform/lwip/src/include/ipv4
+PLTF_INC_DIRS += platform/lwip/src/include/netif
+PLTF_INC_DIRS += platform/lwip/src/include/posix
+PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
+PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
 
 ########################################################################################################################
 #

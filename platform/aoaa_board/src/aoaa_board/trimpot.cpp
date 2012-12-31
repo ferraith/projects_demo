@@ -1,18 +1,17 @@
 // AOAA Board Library
 // Copyright (C) ferraith. All rights reserved.
 
-#include "trimpot.h"
+#include "aoaa_board/trimpot.h"
 
-#include "include/lpc17xx_adc.h"
-#include "include/lpc17xx_pinsel.h"
+#include "lpc17xx/lpc17xx_adc.h"
+#include "lpc17xx/lpc17xx_pinsel.h"
 
 namespace aoaa_board {
 
 Trimpot::Trimpot() {}
 
 
-void Trimpot::Init()
-{
+void Trimpot::Init() {
   PINSEL_CFG_Type PinCfg;
 
   // Initialize ADC pin connect
