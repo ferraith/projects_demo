@@ -5,8 +5,8 @@
 
 #include <cstring>
 
-#include "device/include/LPC17xx.h"
-#include "include/lpc17xx_pinsel.h"
+#include "cmsis_core_lpc17xx/LPC17xx.h"
+#include "lpc17xx/lpc17xx_pinsel.h"
 
 namespace aoaa_board {
 
