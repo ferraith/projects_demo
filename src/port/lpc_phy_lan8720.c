@@ -27,8 +27,8 @@
 #include "lwip/err.h"
 #include "lwip/tcpip.h"
 #include "lwip/snmp.h"
-#include "lpc_emac_config.h"
-#include "lpc_phy.h"
+#include "port/lpc_emac_config.h"
+#include "port/lpc_phy.h"
 
 /** @defgroup lan8720_phy	PHY status and control for the LAN8720.
  * @ingroup lwip_phy
