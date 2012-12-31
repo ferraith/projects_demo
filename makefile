@@ -51,12 +51,12 @@ PROJ_SRC_DIRS += src/port
 PROJ_SRC_DIRS += src/port/arch
 
 #============================== Header Directories =====================================================================
-PROJ_INC_DIRS  = src/include
-PROJ_INC_DIRS += src/include/ipv4
-# PROJ_INC_DIRS += src/include/ipv6
-PROJ_INC_DIRS += src/include/netif
-PROJ_INC_DIRS += src/include/posix
-PROJ_INC_DIRS += src/port/include
+PROJ_INC_DIRS  = include
+PROJ_INC_DIRS += include/lwip
+PROJ_INC_DIRS += include/lwip/ipv4
+# PROJ_INC_DIRS += include/lwip/ipv6
+PROJ_INC_DIRS += src
+PROJ_INC_DIRS += src/port
 
 #============================== Object Directories =====================================================================
 PROJ_OBJ_DIRS  =
