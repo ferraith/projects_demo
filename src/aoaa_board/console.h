@@ -1,15 +1,15 @@
 // AOAA Board Library
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef CONSOLE_H_
-#define CONSOLE_H_
+#ifndef AOAA_BOARD_CONSOLE_H_
+#define AOAA_BOARD_CONSOLE_H_
 
 #include <stdint.h>
 
-#include "FreeRTOS.h"
-#include "class_helper.h"
-#include "lpc17xx_uart.h"
-#include "semphr.h"
+#include "core/include/FreeRTOS.h"
+#include "common/class_helper.h"
+#include "include/lpc17xx_uart.h"
+#include "core/include/semphr.h"
 
 namespace aoaa_board {
 
@@ -55,7 +55,7 @@ class Console {
   /// @param[in]     string  The string to send
   /// @return        Number of bytes sent
   ///
-  uint32_t SendString(const char *string) const;
+  uint32_t SendString(char *string) const;
   ///
   /// @brief         Receive a block of data from the console.
   /// @param[out]    rx_buffer      Pointer to receive buffer
@@ -79,4 +79,4 @@ class Console {
 
 }  // namespace aoaa_board
 
-#endif  // CONSOLE_H_
+#endif  // AOAA_BOARD_CONSOLE_H_
