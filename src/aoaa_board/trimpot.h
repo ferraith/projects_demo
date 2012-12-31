@@ -1,12 +1,12 @@
 // AOAA Board Library
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef TRIMPOT_H_
-#define TRIMPOT_H_
+#ifndef AOAA_BOARD_TRIMPOT_H_
+#define AOAA_BOARD_TRIMPOT_H_
 
 #include <stdint.h>
 
-#include "class_helper.h"
+#include "common/class_helper.h"
 
 namespace aoaa_board {
 
@@ -35,4 +35,4 @@ class Trimpot {
 
 }  // namespace aoaa_board
 
-#endif  // TRIMPOT_H_
+#endif  // AOAA_BOARD_TRIMPOT_H_
