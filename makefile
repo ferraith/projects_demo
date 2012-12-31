@@ -32,11 +32,10 @@ include ../../toolchain/make/libs.mk
 # Project Files
 #
 #============================== Source Directories =====================================================================
-PROJ_SRC_DIRS  = src/device
+PROJ_SRC_DIRS  = src
 
 #============================== Header Directories =====================================================================
-PROJ_INC_DIRS  = src/core/include
-PROJ_INC_DIRS += src/device/include
+PROJ_INC_DIRS  = include/cmsis_core_lpc17xx
 
 #============================== Object Directories =====================================================================
 PROJ_OBJ_DIRS  =
