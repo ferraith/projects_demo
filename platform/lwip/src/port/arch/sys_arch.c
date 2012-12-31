@@ -35,7 +35,7 @@
 #include "lwip/sys.h"
 #include "lwip/mem.h"
 
-#include "arch/lpc_arch.h"
+#include "port/arch/lpc_arch.h"
 #include <stdio.h>
 
  #if NO_SYS==1
@@ -47,7 +47,7 @@ u32_t sys_now(void)
 
 #else
 /* ------------------------ System architecture includes ----------------------------- */
-#include "arch/sys_arch.h"
+#include "port/arch/sys_arch.h"
 
 /* ------------------------ lwIP includes --------------------------------- */
 #include "lwip/opt.h"
