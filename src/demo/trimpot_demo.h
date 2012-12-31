@@ -1,14 +1,14 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef DEMOS_TRIMPOT_DEMO_H_
-#define DEMOS_TRIMPOT_DEMO_H_
+#ifndef DEMO_TRIMPOT_DEMO_H_
+#define DEMO_TRIMPOT_DEMO_H_
 
 #include <stdint.h>
 
 #include "FreeRTOS.h"
-#include "class_helper.h"
-#include "console.h"
+#include "common/class_helper.h"
+#include "aoaa_board/console.h"
 #include "lpc17xx_uart.h"
 #include "task.h"
 
@@ -49,4 +49,4 @@ class TrimpotDemo {
 
 }  // namespace demo
 
-#endif  // DEMOS_TRIMPOT_DEMO_H_
+#endif  // DEMO_TRIMPOT_DEMO_H_

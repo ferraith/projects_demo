@@ -1,7 +1,7 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#include "queue_demo.h"
+#include "demo/queue_demo.h"
 
 #include <stdio.h>
 

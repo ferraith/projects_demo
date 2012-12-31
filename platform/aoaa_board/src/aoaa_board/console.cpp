@@ -1,18 +1,18 @@
 // AOAA Board Library
 // Copyright (C) ferraith. All rights reserved.
 
-#include "Console.h"
+#include "aoaa_board/console.h"
 
 #include <cstring>
 
-#include "LPC17xx.h"
-#include "lpc17xx_pinsel.h"
+#include "device/include/LPC17xx.h"
+#include "include/lpc17xx_pinsel.h"
 
 namespace aoaa_board {
 
 Console::Console()
-    : kTimeout(5 * portTICK_RATE_MS),                  // Timeout is reached after 5 ms
-      kConsoleDevice((LPC_UART_TypeDef *) LPC_UART0),  // USB-to-UART bridge is connected to UART0
+    : kTimeout(5 * portTICK_RATE_MS),  // Timeout is reached after 5 ms
+      kConsoleDevice(LPC_UART0),       // USB-to-UART bridge is connected to UART0
       receive_lock_(NULL),
       send_lock_(NULL) {}
 
@@ -50,7 +50,7 @@ bool Console::Init(uint32_t baud_rate, UART_DATABIT_Type num_data_bits, UART_PAR
   vSemaphoreCreateBinary(send_lock_);
   vSemaphoreCreateBinary(receive_lock_);
 
-  if((send_lock_ != NULL) && (receive_lock_ != NULL)) {
+  if ((send_lock_ != NULL) && (receive_lock_ != NULL)) {
     // Configure UART0 pin selection for serial output
     PINSEL_CFG_Type tx_pin_config;
     tx_pin_config.Portnum = PINSEL_PORT_0;
@@ -89,7 +89,7 @@ bool Console::Init(uint32_t baud_rate, UART_DATABIT_Type num_data_bits, UART_PAR
 uint32_t Console::SendData(uint8_t *tx_buffer, uint32_t buffer_length) const {
   uint32_t num_sent_bytes = 0;
   // Wait until no other task is sending data
-  if(xSemaphoreTake(send_lock_, kTimeout) == pdTRUE) {
+  if (xSemaphoreTake(send_lock_, kTimeout) == pdTRUE) {
     // Send data
     num_sent_bytes = UART_Send(const_cast<LPC_UART_TypeDef *>(kConsoleDevice), tx_buffer, buffer_length, BLOCKING);
     xSemaphoreGive(send_lock_);
@@ -97,13 +97,13 @@ uint32_t Console::SendData(uint8_t *tx_buffer, uint32_t buffer_length) const {
   return num_sent_bytes;
 }
 
-uint32_t Console::SendString(const char *string) const {
+uint32_t Console::SendString(char *string) const {
   uint32_t num_sent_bytes = 0;
   // Wait until no other task is sending a string
-  if(xSemaphoreTake(send_lock_, kTimeout) == pdTRUE) {
+  if (xSemaphoreTake(send_lock_, kTimeout) == pdTRUE) {
     // Send string
-    num_sent_bytes = UART_Send(const_cast<LPC_UART_TypeDef *>(kConsoleDevice), (uint8_t *) string, strlen(string),
-                               BLOCKING);
+    num_sent_bytes = UART_Send(const_cast<LPC_UART_TypeDef *>(kConsoleDevice), reinterpret_cast<uint8_t *>(string),
+                               strlen(string), BLOCKING);
     xSemaphoreGive(send_lock_);
   }
   return num_sent_bytes;
@@ -112,7 +112,7 @@ uint32_t Console::SendString(const char *string) const {
 uint32_t Console::Receive(uint8_t *rx_buffer, uint32_t buffer_length) const {
   uint32_t num_received_bytes = 0;
   // Wait until no other task is receiving data
-  if( xSemaphoreTake(receive_lock_, kTimeout) == pdTRUE) {
+  if (xSemaphoreTake(receive_lock_, kTimeout) == pdTRUE) {
     // Receive data
     num_received_bytes = UART_Receive(const_cast<LPC_UART_TypeDef *>(kConsoleDevice), rx_buffer, buffer_length,
                                       BLOCKING);

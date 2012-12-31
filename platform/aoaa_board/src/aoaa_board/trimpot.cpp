@@ -3,8 +3,8 @@
 
 #include "trimpot.h"
 
-#include "lpc17xx_adc.h"
-#include "lpc17xx_pinsel.h"
+#include "include/lpc17xx_adc.h"
+#include "include/lpc17xx_pinsel.h"
 
 namespace aoaa_board {
 

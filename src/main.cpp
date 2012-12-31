@@ -1,11 +1,11 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#include "FreeRTOS.h"
-#include "console.h"
+#include "core/include/FreeRTOS.h"
+#include "aoaa_board/console.h"
 #include "queue.h"
-#include "queue_demo.h"
-#include "trimpot_demo.h"
+#include "demo/queue_demo.h"
+#include "demo/trimpot_demo.h"
 #include "task.h"
 
 using ::demo::QueueDemo;

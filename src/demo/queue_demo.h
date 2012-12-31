@@ -1,15 +1,15 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#ifndef DEMOS_QUEUE_DEMO_H_
-#define DEMOS_QUEUE_DEMO_H_
+#ifndef DEMO_QUEUE_DEMO_H_
+#define DEMO_QUEUE_DEMO_H_
 
 #include <stdint.h>
 #include <cstddef>
 
 #include "FreeRTOS.h"
-#include "class_helper.h"
-#include "console.h"
+#include "common/class_helper.h"
+#include "aoaa_board/console.h"
 #include "queue.h"
 #include "task.h"
 
@@ -57,4 +57,4 @@ class QueueDemo {
 
 }  // namespace demo
 
-#endif  // DEMOS_QUEUE_DEMO_H_
+#endif  // DEMO_QUEUE_DEMO_H_

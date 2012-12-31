@@ -46,7 +46,7 @@ include toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
 # Common
-PLTF_INC_DIRS  = platform/common/src
+PLTF_INC_DIRS  = platform/common/include
 
 # CMSIS-CORE LPC17xx
 PLTF_LIB_DIRS  = platform/cmsis_core_lpc17xx
@@ -61,6 +61,7 @@ PLTF_LIBS      = platform/cmsis_core_lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/cms
 
 # LPC17xx
 PLTF_LIB_DIRS += platform/lpc17xx
+PLTF_INC_DIRS += platform/lpc17xx/src
 PLTF_INC_DIRS += platform/lpc17xx/src/include
 PLTF_LIBS     += platform/lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/lpc17xx.a
 
@@ -71,6 +72,7 @@ PLTF_LIBS     += platform/aoaa_board/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa_board.
 
 # FreeRTOS
 PLTF_LIB_DIRS += platform/freertos
+PLTF_INC_DIRS += platform/freertos/src
 PLTF_INC_DIRS += platform/freertos/src/core/include
 PLTF_INC_DIRS += platform/freertos/src/port/include
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
@@ -90,11 +92,10 @@ PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 #
 #============================== Source Directories =====================================================================
 PROJ_SRC_DIRS  = src
-PROJ_SRC_DIRS += src/demos
+PROJ_SRC_DIRS += src/demo
 
 #============================== Header Directories =====================================================================
 PROJ_INC_DIRS  = src
-PROJ_INC_DIRS += src/demos
 
 #============================== Object Directories =====================================================================
 PROJ_OBJ_DIRS  =

@@ -1,12 +1,12 @@
 // Demo Application
 // Copyright (C) ferraith. All rights reserved.
 
-#include "trimpot_demo.h"
+#include "demo/trimpot_demo.h"
 
 #include <cstdlib>
 #include <stdio.h>
 
-#include "trimpot.h"
+#include "aoaa_board/trimpot.h"
 
 using ::std::abs;
 using ::aoaa_board::Trimpot;

@@ -28,16 +28,19 @@ include ../../toolchain/make/libs.mk
 
 #============================== Platform Libraries =====================================================================
 # Common
-PLTF_INC_DIRS  = ../common/src
+PLTF_INC_DIRS  = ../common/include
 
 # CMSIS-CORE LPC17xx
+PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src
 PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/core/include
 PLTF_INC_DIRS += ../cmsis_core_lpc17xx/src/device/include
 
 # LPC17xx
+PLTF_INC_DIRS += ../lpc17xx/src
 PLTF_INC_DIRS += ../lpc17xx/src/include
 
 # FreeRTOS
+PLTF_INC_DIRS += ../freertos/src
 PLTF_INC_DIRS += ../freertos/src/core/include
 PLTF_INC_DIRS += ../freertos/src/port/include
 
@@ -46,7 +49,7 @@ PLTF_INC_DIRS += ../freertos/src/port/include
 # Project Files
 #
 #============================== Source Directories =====================================================================
-PROJ_SRC_DIRS  = src
+PROJ_SRC_DIRS  = src/aoaa_board
 
 #============================== Header Directories =====================================================================
 PROJ_INC_DIRS  = src
