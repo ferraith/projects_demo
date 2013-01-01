@@ -55,9 +55,9 @@ PLTF_INC_DIRS += platform/cmsis_core_lpc17xx/include/cmsis_core_lpc17xx
 PLTF_LIBS      = platform/cmsis_core_lpc17xx/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_core_lpc17xx.a
 
 # CMSIS-DSP
-PLTF_LIB_DIRS += platform/cmsis_dsp
-PLTF_INC_DIRS += platform/cmsis_dsp/include
-PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
+# PLTF_LIB_DIRS += platform/cmsis_dsp
+# PLTF_INC_DIRS += platform/cmsis_dsp/include
+# PLTF_LIBS     += platform/cmsis_dsp/build/$(PLATFORM)/$(BUILD_TYPE)/cmsis_dsp.a
 
 # LPC17xx
 PLTF_LIB_DIRS += platform/lpc17xx
@@ -78,13 +78,14 @@ PLTF_INC_DIRS += platform/freertos/src/port
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
 # lwIP
-PLTF_LIB_DIRS += platform/lwip
-PLTF_INC_DIRS += platform/lwip/src/include
-PLTF_INC_DIRS += platform/lwip/src/include/ipv4
-PLTF_INC_DIRS += platform/lwip/src/include/netif
-PLTF_INC_DIRS += platform/lwip/src/include/posix
-PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
-PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
+# PLTF_LIB_DIRS += platform/lwip
+# PLTF_INC_DIRS += platform/lwip/src/include
+# PLTF_INC_DIRS += platform/lwip/src/include/ipv4
+# PLTF_INC_DIRS += platform/lwip/src/include/netif
+# PLTF_INC_DIRS += platform/lwip/src/include/posix
+# PLTF_INC_DIRS += platform/lwip/src/include/posix/sys
+# PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
+
 
 ########################################################################################################################
 #
@@ -93,6 +94,7 @@ PLTF_LIBS     += platform/lwip/build/$(PLATFORM)/$(BUILD_TYPE)/lwip.a
 #============================== Source Directories =====================================================================
 PROJ_SRC_DIRS  = src
 PROJ_SRC_DIRS += src/demo
+PROJ_SRC_DIRS += src/startup
 
 #============================== Header Directories =====================================================================
 PROJ_INC_DIRS  = src
