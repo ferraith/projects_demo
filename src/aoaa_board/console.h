@@ -52,10 +52,10 @@ class Console {
   uint32_t SendData(uint8_t *tx_buffer, uint32_t buffer_length) const;
   ///
   /// @brief         Send a null-terminates string to the console.
-  /// @param[in]     string  The string to send
+  /// @param[in]     string_buffer  The string to send
   /// @return        Number of bytes sent
   ///
-  uint32_t SendString(char *string) const;
+  uint32_t SendString(char *string_buffer) const;
   ///
   /// @brief         Receive a block of data from the console.
   /// @param[out]    rx_buffer      Pointer to receive buffer
