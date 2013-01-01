@@ -8,35 +8,58 @@
 
 namespace aoaa_board {
 
-Trimpot::Trimpot() {}
+Trimpot::Trimpot() : kConversionTimeout(5) {}  // Timeout is reached after 5 cycles
 
+void Trimpot::Deinit() {
+  // Disable ADC
+  ADC_ChannelCmd(LPC_ADC, ADC_CHANNEL_5, DISABLE);
+  // Reset ADC configuration
+  ADC_DeInit(LPC_ADC);
 
-void Trimpot::Init() {
-  PINSEL_CFG_Type PinCfg;
+  // Reset ADC pin selection to default
+  PINSEL_CFG_Type default_pin_config;
+  default_pin_config.Portnum = PINSEL_PORT_1;
+  default_pin_config.Pinnum = PINSEL_PIN_31;
+  default_pin_config.Funcnum = PINSEL_FUNC_0;
+  default_pin_config.Pinmode = PINSEL_PINMODE_PULLUP;
+  default_pin_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+  PINSEL_ConfigPin(&default_pin_config);
+}
 
-  // Initialize ADC pin connect
-  // AD0.5 on P1.31
-  PinCfg.Funcnum = 3;
-  PinCfg.OpenDrain = 0;
-  PinCfg.Pinmode = 0;
-  PinCfg.Portnum = 1;
-  PinCfg.Pinnum = 31;
+void Trimpot::Init(uint32_t sample_rate) {
+  // Configure ADC pin selection for analog input AD0.5
+  PINSEL_CFG_Type ad05_pin_config;
+  ad05_pin_config.Portnum = PINSEL_PORT_1;
+  ad05_pin_config.Pinnum = PINSEL_PIN_31;
+  ad05_pin_config.Funcnum = PINSEL_FUNC_3;
+  ad05_pin_config.Pinmode = PINSEL_PINMODE_PULLUP;
+  ad05_pin_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+  PINSEL_ConfigPin(&ad05_pin_config);
 
-  PINSEL_ConfigPin(&PinCfg);
-
-  // Configuration for ADC:
-  // Frequency at 200 kHz, ADC channel 5, no Interrupt
-  ADC_Init(LPC_ADC, 200000);
+  // Configure ADC to measure channel 5
+  ADC_Init(LPC_ADC, sample_rate);
+  // Disable raising interrupt
   ADC_IntConfig(LPC_ADC, ADC_ADINTEN5, DISABLE);
+  // Enable ADC
   ADC_ChannelCmd(LPC_ADC, ADC_CHANNEL_5, ENABLE);
 }
 
+bool Trimpot::Get(uint16_t *value) {
+  uint8_t counter = 0;
 
-uint16_t Trimpot::Get() {
+  // Start conversion now
   ADC_StartCmd(LPC_ADC, ADC_START_NOW);
-  // Wait conversion complete
-  while (!(ADC_ChannelGetStatus(LPC_ADC, ADC_CHANNEL_5, ADC_DATA_DONE)));
-  return ADC_ChannelGetData(LPC_ADC, ADC_CHANNEL_5);
+  // Wait until conversion is completed or timeout is reached
+  while ((ADC_ChannelGetStatus(LPC_ADC, ADC_CHANNEL_5, ADC_DATA_DONE) == SET) && (counter < kConversionTimeout)) {
+    counter++;
+  }
+  // If conversion is finished, read converted value
+  if (counter < kConversionTimeout) {
+    *value = ADC_ChannelGetData(LPC_ADC, ADC_CHANNEL_5);
+    return true;
+  } else {
+    return false;
+  }
 }
 
 }  // namespace aoaa_board
