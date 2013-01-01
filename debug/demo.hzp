@@ -10,23 +10,24 @@
       </file>
     </folder>
     <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../src">
-      <folder Name="demos" filter="*.h;*.c;*.cpp;*.s;*.o" path="../src/demos"/>
+      <folder Name="demo" filter="*.h;*.c;*.cpp;*.s;*.o" path="../src/demo"/>
     </folder>
     <folder Name="platform">
       <folder Name="aoaa_board">
-        <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/aoaa_board/src"/>
-      </folder>
-      <folder Name="cmsis_core_lpc17xx">
         <folder Name="src">
-          <folder Name="core">
-            <folder Name="include" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_core_lpc17xx/src/core/include"/>
-          </folder>
-          <folder Name="device" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_core_lpc17xx/src/device">
-            <folder Name="include" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_core_lpc17xx/src/device/include"/>
-          </folder>
+          <folder Name="aoaa_board" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/aoaa_board/src/aoaa_board"/>
         </folder>
       </folder>
+      <folder Name="cmsis_core_lpc17xx">
+        <folder Name="include">
+          <folder Name="cmsis_core_lpc17xx" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_core_lpc17xx/include/cmsis_core_lpc17xx"/>
+        </folder>
+        <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_core_lpc17xx/src"/>
+      </folder>
       <folder Name="cmsis_dsp">
+        <folder Name="include">
+          <folder Name="cmsis_dsp" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/include/cmsis_dsp"/>
+        </folder>
         <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src">
           <folder Name="basic_math_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/basic_math_functions"/>
           <folder Name="common_tables" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/common_tables"/>
@@ -34,7 +35,6 @@
           <folder Name="controller_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/controller_functions"/>
           <folder Name="fast_math_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/fast_math_functions"/>
           <folder Name="filtering_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/filtering_functions"/>
-          <folder Name="include" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/include"/>
           <folder Name="matrix_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/matrix_functions"/>
           <folder Name="statistics_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/statistics_functions"/>
           <folder Name="support_functions" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/cmsis_dsp/src/support_functions"/>
@@ -42,47 +42,52 @@
         </folder>
       </folder>
       <folder Name="common">
-        <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/common/src"/>
+        <folder Name="include">
+          <folder Name="common" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/common/include/common"/>
+        </folder>
       </folder>
       <folder Name="freertos">
+        <folder Name="include">
+          <folder Name="freertos" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/freertos/include/freertos"/>
+        </folder>
         <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/freertos/src">
-          <folder Name="include" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/freertos/src/include"/>
+          <folder Name="core" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/freertos/src/core"/>
+          <folder Name="port" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/freertos/src/port"/>
         </folder>
       </folder>
       <folder Name="lpc17xx">
-        <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lpc17xx/src">
-          <folder Name="include" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lpc17xx/src/include"/>
+        <folder Name="include">
+          <folder Name="lpc17xx" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lpc17xx/include/lpc17xx"/>
         </folder>
+        <folder Name="src" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lpc17xx/src"/>
       </folder>
       <folder Name="lwip">
-        <folder Name="src">
+        <folder Name="include">
+          <folder Name="lwip" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/include/lwip">
+            <folder Name="ipv4">
+              <folder Name="lwip" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/include/lwip/ipv4/lwip"/>
+            </folder>
+            <folder Name="ipv6">
+              <folder Name="lwip" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/include/lwip/ipv6/lwip"/>
+            </folder>
+            <folder Name="netif" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/include/lwip/netif"/>
+            <folder Name="posix" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/include/lwip/posix">
+              <folder Name="sys" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/include/lwip/posix/sys"/>
+            </folder>
+          </folder>
+        </folder>
+      <folder Name="src">
           <folder Name="api" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/api"/>
           <folder Name="core" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/core">
             <folder Name="ipv4" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/core/ipv4"/>
             <folder Name="ipv6" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/core/ipv6"/>
             <folder Name="snmp" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/core/snmp"/>
           </folder>
-          <folder Name="include">
-            <folder Name="ipv4">
-              <folder Name="lwip" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/include/ipv4/lwip"/>
-            </folder>
-            <folder Name="ipv6">
-              <folder Name="lwip" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/include/ipv6/lwip"/>
-            </folder>
-            <folder Name="lwip" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/include/lwip"/>
-            <folder Name="netif" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/include/netif"/>
-            <folder Name="posix" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/include/posix">
-              <folder Name="sys" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/include/posix/sys"/>
-            </folder>
-          </folder>
           <folder Name="netif" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/netif">
             <folder Name="ppp" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/netif/ppp"/>
           </folder>
           <folder Name="port" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/port">
             <folder Name="arch" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/port/arch"/>
-            <folder Name="include" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/port/include">
-              <folder Name="arch" filter="*.h;*.c;*.cpp;*.s;*.o" path="../platform/lwip/src/port/include/arch"/>
-            </folder>
           </folder>
         </folder>
       </folder>
