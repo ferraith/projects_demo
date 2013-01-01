@@ -28,14 +28,17 @@ void TrimpotDemo::Task() {
   Trimpot trimpot;
 
   last_wake_time = xTaskGetTickCount();
-  trimpot.Init();
+  trimpot.Init(200000);
 
   for (;;) {
-    value = trimpot.Get();
-    if (abs(current_value_ - value) > 1) {
+    bool value_is_valid = trimpot.Get(&value);
+    if (value_is_valid && (abs(current_value_ - value) > 1)) {
       sprintf(console_string, "TrimpotDemo: Read trimpot value %d\r\n", value);
       console_->SendString(console_string);
       current_value_ = value;
+    } else if (!value_is_valid) {
+      sprintf(console_string, "TrimpotDemo: Read error\r\n", value);
+      console_->SendString(console_string);
     }
     vTaskDelayUntil(&last_wake_time, 100 * portTICK_RATE_MS);
   }
