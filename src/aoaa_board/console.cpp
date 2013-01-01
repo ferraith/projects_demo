@@ -97,13 +97,13 @@ uint32_t Console::SendData(uint8_t *tx_buffer, uint32_t buffer_length) const {
   return num_sent_bytes;
 }
 
-uint32_t Console::SendString(char *string) const {
+uint32_t Console::SendString(char *string_buffer) const {
   uint32_t num_sent_bytes = 0;
   // Wait until no other task is sending a string
   if (xSemaphoreTake(send_lock_, kTimeout) == pdTRUE) {
     // Send string
-    num_sent_bytes = UART_Send(const_cast<LPC_UART_TypeDef *>(kConsoleDevice), reinterpret_cast<uint8_t *>(string),
-                               strlen(string), BLOCKING);
+    num_sent_bytes = UART_Send(const_cast<LPC_UART_TypeDef *>(kConsoleDevice),
+                               reinterpret_cast<uint8_t *>(string_buffer), strlen(string_buffer), BLOCKING);
     xSemaphoreGive(send_lock_);
   }
   return num_sent_bytes;
