@@ -14,6 +14,7 @@ using ::aoaa_board::Console;
 
 ///
 /// @brief         Initialize peripherals of microcontroller and board.
+/// @param[in]     console  Console to send and receive data to external devices
 /// @return        True if peripherals were successfully initialized
 ///
 bool InitEcu(Console *console) {
@@ -23,6 +24,7 @@ bool InitEcu(Console *console) {
 
 ///
 /// @brief         Deinitialize peripherals of microcontroller and board.
+/// @param[in]     console  Console to send and receive data to external devices
 /// @return        None
 ///
 void DeinitEcu(Console *console) {
@@ -55,14 +57,11 @@ int main() {
   // Deinitialize ECU
   DeinitEcu(console);
 
-  // Delete demos
+  // Delete demos and their dependencies
   delete queue_demo;
-  vQueueDelete(queue_handle);
   delete trimpot_demo;
   delete console;
-
-  // If all is well this point will never be reached
-  for (;;);
+  vQueueDelete(queue_handle);
 
   return 0;
 }
