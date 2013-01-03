@@ -28,9 +28,9 @@ $(PROJ_NAME).a: $(PROJ_OBJS)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
 	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
 
-%.asm: %.cpp
-	$(ECHO) "    CPP $<"
-	$(CPP) $(CPPFLAGS) $(CXXFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
+%.asm: %.cc
+	$(ECHO) "    CXX $<"
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(STD_INCS) $(PLTF_INCS) $(PROJ_INCS) -MD $(BUILD_DIR)/$*.d \
 	-MQ $(BUILD_DIR)/$*.o $(CURDIR)/$< -o $(BUILD_DIR)/$@
 
 %.asm: %.s
@@ -43,7 +43,7 @@ $(PROJ_NAME).a: $(PROJ_OBJS)
 
 %.o : %.c
 
-%.o : %.cpp
+%.o : %.cc
 
 %.o : %.s
 
