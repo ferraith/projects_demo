@@ -73,8 +73,9 @@ PLTF_LIBS     += platform/aoaa_board/build/$(PLATFORM)/$(BUILD_TYPE)/aoaa_board.
 # FreeRTOS
 PLTF_LIB_DIRS += platform/freertos
 PLTF_INC_DIRS += platform/freertos/include
-PLTF_INC_DIRS += platform/freertos/src/core
-PLTF_INC_DIRS += platform/freertos/src/port
+PLTF_INC_DIRS += platform/freertos/src
+PLTF_INC_DIRS += platform/freertos/src/freertos/core
+PLTF_INC_DIRS += platform/freertos/src/freertos/port
 PLTF_LIBS     += platform/freertos/build/$(PLATFORM)/$(BUILD_TYPE)/freertos.a
 
 # lwIP
