@@ -4,7 +4,7 @@
 #include "aoaa_board/console.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
-#include "freertos/task.h"
+#include "freertos/port/task_wrapper.h"
 #include "demo/queue_demo.h"
 #include "demo/trimpot_demo.h"
 
@@ -42,14 +42,14 @@ int main() {
   // Initialize ECU
   InitEcu(console);
 
-  // Run queue demo
+  // Create queue demo
   xQueueHandle queue_handle = xQueueCreate(1, sizeof(uint32_t));
   QueueDemo *queue_demo = new QueueDemo(queue_handle, console);
   queue_demo->Run();
 
-  // Run trimpot demo
-  TrimpotDemo *trimpot_demo = new TrimpotDemo(console);
-  trimpot_demo->Run();
+  // Create trimpot demo
+  TrimpotDemo *trimpot_demo = new TrimpotDemo();
+  trimpot_demo->Init(100, tskIDLE_PRIORITY + 1, console);
 
   // Start task scheduling
   vTaskStartScheduler();
@@ -59,7 +59,9 @@ int main() {
 
   // Delete demos and their dependencies
   delete queue_demo;
+  trimpot_demo->Deinit();
   delete trimpot_demo;
+
   delete console;
   vQueueDelete(queue_handle);
 

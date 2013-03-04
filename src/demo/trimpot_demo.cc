@@ -13,42 +13,56 @@ using ::aoaa_board::Trimpot;
 
 namespace demo {
 
-TrimpotDemo::TrimpotDemo(Console *console) : console_(console), task_handle_(NULL), current_value_(0) {}
+TrimpotDemo::TrimpotDemo()
+    : kSampleRate(200000),  // 200 kHz sample rate
+      kStackDepth(90),  // 360 Bytes
+      kTaskName("TrimpotDemo"),
+      console_(nullptr),
+      current_value_(0),
+      execution_cycle_(0) {}
 
-
-extern "C" void TrimpotTaskWrapper(void* parm) {
-  (static_cast<TrimpotDemo *>(parm))->Task();
+void TrimpotDemo::Deinit() {
+  Delete();
 }
 
-
-void TrimpotDemo::Task() {
-  portTickType last_wake_time;
-  uint16_t value = 0;
-  char console_string[50];
-  Trimpot trimpot;
-
-  last_wake_time = xTaskGetTickCount();
-  trimpot.Init(200000);
-
-  for (;;) {
-    bool value_is_valid = trimpot.Get(&value);
-    if (value_is_valid && (abs(current_value_ - value) > 1)) {
-      sprintf(console_string, "TrimpotDemo: Read trimpot value %d\r\n", value);
-      console_->SendString(console_string);
-      current_value_ = value;
-    } else if (!value_is_valid) {
-      sprintf(console_string, "TrimpotDemo: Read error\r\n", value);
-      console_->SendString(console_string);
-    }
-    vTaskDelayUntil(&last_wake_time, 100 * portTICK_RATE_MS);
-  }
-  vTaskDelete(NULL);
+bool TrimpotDemo::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
+  execution_cycle_ = execution_cycle;
+  console_ = console;
+  return Create(kTaskName, kStackDepth, priority);
 }
-
 
 void TrimpotDemo::Run() {
-  xTaskCreate(TrimpotTaskWrapper, (const signed char *) "TrimpotDemo", ((unsigned short) 90), (void *) this,
-              (tskIDLE_PRIORITY + 1), &task_handle_);
+  portTickType last_wake_time;
+  uint16_t value = 0;
+  char console_string[30];
+  Trimpot trimpot;
+
+  // Set last wake time initially
+  last_wake_time = xTaskGetTickCount();
+  // Initialize trimpot to be able to read trimpot value
+  trimpot.Init(kSampleRate);
+
+  // Endless task loop
+  for (;;) {
+    // Read trimpot value
+    bool value_is_valid = trimpot.Get(&value);
+    // Check if value is valid and different from value which was read in last iteration
+    if (value_is_valid && (abs(current_value_ - value) > 1)) {
+      // Print read value on console
+      snprintf(console_string, sizeof(console_string), "TrimpotDemo: Read %d\r\n", value);
+      console_->SendString(console_string);
+      current_value_ = value;
+    // Read value is invalid
+    } else if (!value_is_valid) {
+      // Print error message
+      snprintf(console_string, sizeof(console_string), "TrimpotDemo: Read error\r\n", value);
+      console_->SendString(console_string);
+    }
+    // Delay task some time
+    DelayUntil(&last_wake_time, execution_cycle_);
+  }
+  // Should never be reached
+  trimpot.Deinit();
 }
 
 }  // namespace demo

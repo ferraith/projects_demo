@@ -10,39 +10,61 @@
 #include "common/class_helper.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/port/task_wrapper.h"
 #include "lpc17xx/lpc17xx_uart.h"
 
 using ::aoaa_board::Console;
+using ::freertos::TaskWrapper;
 
 namespace demo {
 
 ///
-/// @brief         Provides methods to send and receive data to or from a console connected via UART to a
-///                USB-to-UART bridge.
+/// @brief         A task demonstrates the usage of the trimpot placed on the AOAA board by reading sampled values.
 ///
-class TrimpotDemo {
+class TrimpotDemo : public TaskWrapper {
  public:
   ///
   /// @brief         Constructor
   ///
-  explicit TrimpotDemo(Console *console);
+  explicit TrimpotDemo();
   ///
+  /// @brief         Destructor
   ///
+  ~TrimpotDemo() {}
+
   ///
-  void Task();
+  /// @brief         Removes the trimpot demo task from the list of tasks that are ready to run.
+  /// @return        None
   ///
+  void Deinit();
   ///
+  /// @brief         Creates the trimpot demo task and add it to the list of tasks that are ready to run.
+  /// @param[in]     execution_cycle  Cycle time in milliseconds in which the task will be executed periodically
+  /// @param[in]     priority  Priority at which the task should run
+  /// @param[in]     console  Console
+  /// @return        True if the task was successfully created and added to a ready list
+  ///
+  bool Init(uint16_t execution_cycle, uint8_t priority, Console *console);
+  ///
+  /// @brief         Will be executed in task context and reads cyclic the current trimpot value. The value will be
+  ///                printed on the console.
+  /// @return        None
   ///
   void Run();
 
  private:
-  ///
+  /// Sample rate in which trimpot will be read
+  const uint32_t kSampleRate;
+  /// Size of the task stack specified as the number of variables the stack can hold
+  const uint16_t kStackDepth;
+  /// Descriptive name for the task
+  const char *kTaskName;
+  /// Reference to the console which is used for printing debug messages
   Console *console_;
-  ///
-  xTaskHandle task_handle_;
-  ///
+  /// Current value of trimpot
   uint16_t current_value_;
-
+  /// Cycle time in milliseconds in which the task will be executed periodically
+  uint16_t execution_cycle_;
   /// Disables the copy constructor and assignment operator
   DISALLOW_COPY_AND_ASSIGN(TrimpotDemo);
 };
