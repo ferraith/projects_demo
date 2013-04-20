@@ -2,15 +2,12 @@
 // Copyright (C) ferraith. All rights reserved.
 
 #include "aoaa_board/console.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/queue.h"
-#include "freertos/port/task_wrapper.h"
 #include "demo/queue_demo.h"
 #include "demo/trimpot_demo.h"
 
+using ::aoaa_board::Console;
 using ::demo::QueueDemo;
 using ::demo::TrimpotDemo;
-using ::aoaa_board::Console;
 
 ///
 /// @brief         Initialize peripherals of microcontroller and board.
@@ -43,11 +40,10 @@ int main() {
   InitEcu(console);
 
   // Create queue demo
-  xQueueHandle queue_handle = xQueueCreate(1, sizeof(uint32_t));
-  QueueDemo *queue_demo = new QueueDemo(queue_handle, console);
-  queue_demo->Run();
+  QueueDemo queue_demo;
+  queue_demo.Init(console);
 
-  // Create trimpot demo
+  // Create trim-pot demo
   TrimpotDemo *trimpot_demo = new TrimpotDemo();
   trimpot_demo->Init(100, tskIDLE_PRIORITY + 1, console);
 
@@ -57,13 +53,12 @@ int main() {
   // Deinitialize ECU
   DeinitEcu(console);
 
-  // Delete demos and their dependencies
-  delete queue_demo;
+  // Deinitialize and delete demos and their dependencies
+  queue_demo.Deinit();
   trimpot_demo->Deinit();
   delete trimpot_demo;
 
   delete console;
-  vQueueDelete(queue_handle);
 
   return 0;
 }

@@ -4,53 +4,45 @@
 #ifndef DEMO_QUEUE_DEMO_H_
 #define DEMO_QUEUE_DEMO_H_
 
-#include <stdint.h>
-#include <cstddef>
-
 #include "aoaa_board/console.h"
 #include "common/class_helper.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/queue.h"
-#include "freertos/task.h"
+#include "demo/queue_receiver.h"
+#include "demo/queue_sender.h"
+#include "freertos/port/queue_wrapper.h"
 
-using ::aoaa_board::Console;
+using aoaa_board::Console;
+using freertos::QueueWrapper;
 
 namespace demo {
 
 ///
-/// @brief         Demonstrates the usage of FreeRTOS queues with the help of two tasks transferring a counter
+/// @brief         Demonstrates the usage of FreeRTOS queues with the help of two tasks transferring a counter.
 ///
 class QueueDemo {
  public:
   ///
-  /// @brief         Constructor
+  /// @brief         Constructor.
   ///
-  QueueDemo(xQueueHandle queue_handle, Console *console);
+  explicit QueueDemo();
   ///
-  /// @brief         Implementation of a FreeRTOS task receiving and sending a counter. This task starts sending the
-  ///                counter
+  /// @brief         Creates and initializes the queue, sender and receiver task.
+  /// @param[in]     Console
   /// @return        None
   ///
-  void TaskA();
+  bool Init(Console *console);
   ///
-  /// @brief         Implementation of a FreeRTOS task receiving and sending a counter
+  /// @brief         Deinitializes and deletes the queue, sender and receiver task.
   /// @return        None
   ///
-  void TaskB();
-  ///
-  ///
-  ///
-  void Run();
-  /// Queue handle referencing a queue containing the counter which is transfered between the two tasks
-  xQueueHandle queue_handle_;
+  void Deinit();
 
  private:
-  /// Console
-  Console *console_;
-  /// Task handle referencing Task A
-  xTaskHandle task_a_handle_;
-  /// Task handle referencing Task B
-  xTaskHandle task_b_handle_;
+  /// Queue to communicate between a sender and receiver task
+  QueueWrapper *queue_;
+  /// Receiver task which receives periodically a value
+  QueueReceiver *receiver_;
+  /// Sender task which sends periodically a value
+  QueueSender *sender_;
   /// Disables the copy constructor and assignment operator
   DISALLOW_COPY_AND_ASSIGN(QueueDemo);
 };

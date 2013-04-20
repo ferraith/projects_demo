@@ -19,26 +19,26 @@ using ::freertos::TaskWrapper;
 namespace demo {
 
 ///
-/// @brief         A task demonstrates the usage of the trimpot placed on the AOAA board by reading sampled values.
+/// @brief         A task demonstrates the usage of the trim-pot placed on the AOAA board by reading sampled values.
 ///
 class TrimpotDemo : public TaskWrapper {
  public:
   ///
   /// @brief         Constructor
   ///
-  explicit TrimpotDemo();
+  TrimpotDemo();
   ///
   /// @brief         Destructor
   ///
   ~TrimpotDemo() {}
 
   ///
-  /// @brief         Removes the trimpot demo task from the list of tasks that are ready to run.
+  /// @brief         Removes the trim-pot demo task from the list of tasks that are ready to run.
   /// @return        None
   ///
   void Deinit();
   ///
-  /// @brief         Creates the trimpot demo task and add it to the list of tasks that are ready to run.
+  /// @brief         Creates the trim-pot demo task and add it to the list of tasks that are ready to run.
   /// @param[in]     execution_cycle  Cycle time in milliseconds in which the task will be executed periodically
   /// @param[in]     priority  Priority at which the task should run
   /// @param[in]     console  Console
@@ -46,14 +46,14 @@ class TrimpotDemo : public TaskWrapper {
   ///
   bool Init(uint16_t execution_cycle, uint8_t priority, Console *console);
   ///
-  /// @brief         Will be executed in task context and reads cyclic the current trimpot value. The value will be
+  /// @brief         Will be executed in task context and reads cyclic the current trim-pot value. The value will be
   ///                printed on the console.
   /// @return        None
   ///
   void Run();
 
  private:
-  /// Sample rate in which trimpot will be read
+  /// Sample rate in which trim-pot will be read
   const uint32_t kSampleRate;
   /// Size of the task stack specified as the number of variables the stack can hold
   const uint16_t kStackDepth;
@@ -61,7 +61,7 @@ class TrimpotDemo : public TaskWrapper {
   const char *kTaskName;
   /// Reference to the console which is used for printing debug messages
   Console *console_;
-  /// Current value of trimpot
+  /// Current value of trim-pot
   uint16_t current_value_;
   /// Cycle time in milliseconds in which the task will be executed periodically
   uint16_t execution_cycle_;

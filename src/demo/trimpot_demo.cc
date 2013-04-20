@@ -38,7 +38,7 @@ void TrimpotDemo::Run() {
   Trimpot trimpot;
 
   // Set last wake time initially
-  last_wake_time = xTaskGetTickCount();
+  last_wake_time = GetTickCount();
   // Initialize trimpot to be able to read trimpot value
   trimpot.Init(kSampleRate);
 
