@@ -3,6 +3,10 @@
 
 #include "demo/queue_demo.h"
 
+#include "demo/queue_receiver.h"
+#include "demo/queue_sender.h"
+#include "freertos/port/queue_wrapper.h"
+
 namespace demo {
 
 QueueDemo::QueueDemo() : queue_(nullptr) {}

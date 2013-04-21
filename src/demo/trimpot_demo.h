@@ -6,12 +6,15 @@
 
 #include <stdint.h>
 
-#include "aoaa_board/console.h"
 #include "common/class_helper.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/port/task_wrapper.h"
 #include "lpc17xx/lpc17xx_uart.h"
+
+namespace aoaa_board {
+class Console;
+}
 
 using ::aoaa_board::Console;
 using ::freertos::TaskWrapper;

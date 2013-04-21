@@ -5,6 +5,9 @@
 
 #include <stdio.h>
 
+#include "aoaa_board/console.h"
+#include "freertos/port/queue_wrapper.h"
+
 #define CONSOLE_STRING_SIZE 30
 
 namespace demo {

@@ -4,11 +4,20 @@
 #ifndef DEMO_QUEUE_DEMO_H_
 #define DEMO_QUEUE_DEMO_H_
 
-#include "aoaa_board/console.h"
 #include "common/class_helper.h"
-#include "demo/queue_receiver.h"
-#include "demo/queue_sender.h"
-#include "freertos/port/queue_wrapper.h"
+
+namespace aoaa_board {
+class Console;
+}
+
+namespace demo {
+class QueueReceiver;
+class QueueSender;
+}
+
+namespace freertos {
+class QueueWrapper;
+}
 
 using aoaa_board::Console;
 using freertos::QueueWrapper;

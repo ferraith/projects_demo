@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <cstdlib>
 
+#include "aoaa_board/console.h"
 #include "aoaa_board/trimpot.h"
 
 using ::std::abs;

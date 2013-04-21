@@ -6,10 +6,16 @@
 
 #include <stdint.h>
 
-#include "aoaa_board/console.h"
 #include "common/class_helper.h"
-#include "freertos/port/queue_wrapper.h"
 #include "freertos/port/task_wrapper.h"
+
+namespace aoaa_board {
+  class Console;
+}
+
+namespace freertos {
+  class QueueWrapper;
+}
 
 using ::aoaa_board::Console;
 using ::freertos::QueueWrapper;
