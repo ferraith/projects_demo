@@ -128,14 +128,14 @@ else ifeq ($(BUILD_TYPE),release)
 endif
 
 #============================== Project C Compile Flags ================================================================
-CFLAGS +=
+CFLAGS += -Werror
 
 ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
 endif
 
 #============================== Project C++ Compile Flags ==============================================================
-CXXFLAGS +=
+CXXFLAGS += -Werror
 
 ifeq ($(BUILD_TYPE),debug)
 else ifeq ($(BUILD_TYPE),release)
