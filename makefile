@@ -3,7 +3,7 @@
 # Project: AOAA Board Library
 #
 # Description:
-#	Makefile used to build the AOAA Board Library.
+# Makefile used to build the AOAA Board Library.
 #
 ########################################################################################################################
 #
