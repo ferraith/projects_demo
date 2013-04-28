@@ -3,7 +3,7 @@
 # Workspace: Android Open Accessory Software for AOAA Kit
 #
 # Description:
-#	Makefile used for the configuration of the toolchain.
+# Makefile used for the configuration of the toolchain.
 #
 #============================== Paths ==================================================================================
 CW_DIR       := c:/DevTools/CrossWorks_for_ARM_2.3

@@ -3,7 +3,7 @@
 # Workspace: Android Open Accessory Software for AOAA Kit
 #
 # Description:
-#	Makefile used for the definition of standard libraries.
+# Makefile used for the definition of standard libraries.
 #
 #============================== Optimization: None =====================================================================
 STD_INC_DIRS  = $(CWI_DIR)

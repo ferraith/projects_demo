@@ -3,15 +3,15 @@
 # Workspace: Android Open Accessory Software for AOAA Kit
 #
 # Description:
-#	Makefile used for the definition of common build and clean rules.
+# Makefile used for the definition of common build and clean rules.
 #
 #============================== Build Targets ==========================================================================
 pre_$(PROJ_NAME):
 ifeq ($(BUILD_TYPE),$(filter $(BUILD_TYPE),debug release))
-ifeq ($(PLATFORM),$(filter $(PLATFORM),arm x86))
+ifeq ($(PLATFORM),$(filter $(PLATFORM),ARM x86))
 	$(ECHO) "Building $(PROJ_NAME) ($(BUILD_TYPE)/$(PLATFORM))..."
 else
-	$(error Invalid platform (arm/x86) specified!)
+	$(error Invalid platform (ARM/x86) specified!)
 endif
 else
 	$(error Invalid build type (debug/release) specified!)
