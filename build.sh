@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Supported build configurations:
-# demo.bin - debug/arm:    make demo.bin BUILD_TYPE=debug PLATFORM=arm
-# demo.bin - release/arm:  make demo.bin BUILD_TYPE=release PLATFORM=arm
-# demo.elf - debug/arm:    make demo.elf BUILD_TYPE=debug PLATFORM=arm
-# demo.elf - release/arm:  make demo.elf BUILD_TYPE=release PLATFORM=arm
-# demo.hex - debug/arm:    make demo.hex BUILD_TYPE=debug PLATFORM=arm
-# demo.hex - release/arm:  make demo.hex BUILD_TYPE=release PLATFORM=arm
-# demo.srec - debug/arm:   make demo.srec BUILD_TYPE=debug PLATFORM=arm
-# demo.srec - release/arm: make demo.srec BUILD_TYPE=release PLATFORM=arm
+# demo.bin - debug/ARM:    make demo.bin BUILD_TYPE=debug PLATFORM=ARM
+# demo.bin - release/ARM:  make demo.bin BUILD_TYPE=release PLATFORM=ARM
+# demo.elf - debug/ARM:    make demo.elf BUILD_TYPE=debug PLATFORM=ARM
+# demo.elf - release/ARM:  make demo.elf BUILD_TYPE=release PLATFORM=ARM
+# demo.hex - debug/ARM:    make demo.hex BUILD_TYPE=debug PLATFORM=ARM
+# demo.hex - release/ARM:  make demo.hex BUILD_TYPE=release PLATFORM=ARM
+# demo.srec - debug/ARM:   make demo.srec BUILD_TYPE=debug PLATFORM=ARM
+# demo.srec - release/ARM: make demo.srec BUILD_TYPE=release PLATFORM=ARM
 
 project='demo'
 
@@ -17,7 +17,7 @@ options[0]='-s'
 build_types[0]='debug'
 build_types[1]='release'
 
-platforms[0]='arm'
+platforms[0]='ARM'
 platforms[1]='x86'
 
 binary_formats[0]='elf'
@@ -80,7 +80,7 @@ fi
 if [ "$#" -eq 0 ]; then
     option="-s"
     build_type="debug"
-    platform="arm"
+    platform="ARM"
     binary_format="elf"
     build
 # If arguments are passed, check if they are valid and start build

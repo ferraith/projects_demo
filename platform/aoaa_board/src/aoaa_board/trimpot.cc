@@ -3,6 +3,7 @@
 
 #include "aoaa_board/trimpot.h"
 
+#include "cmsis_core_lpc17xx/LPC17xx.h"
 #include "lpc17xx/lpc17xx_adc.h"
 #include "lpc17xx/lpc17xx_pinsel.h"
 

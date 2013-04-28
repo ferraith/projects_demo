@@ -3,7 +3,7 @@
 # Project: Demo Application
 #
 # Description:
-#	Makefile used to build the startup code and main function of the demo application including all libraries.
+# Makefile used to build the startup code and main function of the demo application including all libraries.
 #
 ########################################################################################################################
 #
