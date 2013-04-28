@@ -3,7 +3,7 @@
 # Project: CMSIS-CORE LPC17xx Library
 #
 # Description:
-#	Makefile used to build the CMSIS-CORE LPC17xx Library.
+# Makefile used to build the CMSIS-CORE LPC17xx Library.
 #
 ########################################################################################################################
 #
