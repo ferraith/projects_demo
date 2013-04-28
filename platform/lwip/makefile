@@ -3,7 +3,7 @@
 # Project: lwIP Library
 #
 # Description:
-#	Makefile used to build the lwIP Library.
+# Makefile used to build the lwIP Library.
 #
 ########################################################################################################################
 #
@@ -32,8 +32,8 @@ PLTF_INC_DIRS  = ../cmsis_core_lpc17xx/include
 
 # FreeRTOS
 PLTF_INC_DIRS += ../freertos/include
-PLTF_INC_DIRS += ../freertos/src/core
-PLTF_INC_DIRS += ../freertos/src/port
+PLTF_INC_DIRS += ../freertos/src/freertos/core
+PLTF_INC_DIRS += ../freertos/src/freertos/port
 
 ########################################################################################################################
 #
