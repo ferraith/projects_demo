@@ -3,7 +3,7 @@
 # Project: LPC17xx Library
 #
 # Description:
-#	Makefile used to build the LPC17xx Library.
+# Makefile used to build the LPC17xx Library.
 #
 ########################################################################################################################
 #
