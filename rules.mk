@@ -3,7 +3,7 @@
 # Workspace: Android Open Accessory Software for AOAA Kit
 #
 # Description:
-#	Makefile used for the definition of common build and clean rules.
+# Makefile used for the definition of common build and clean rules.
 #
 #============================== Build Targets ==========================================================================
 pre_$(PROJ_NAME):
