@@ -51,9 +51,11 @@
         <folder Name="include">
           <folder Name="freertos" filter="*.h;*.c;*.cc;*.s;*.o" path="../platform/freertos/include/freertos"/>
         </folder>
-        <folder Name="src" filter="*.h;*.c;*.cc;*.s;*.o" path="../platform/freertos/src">
-          <folder Name="core" filter="*.h;*.c;*.cc;*.s;*.o" path="../platform/freertos/src/core"/>
-          <folder Name="port" filter="*.h;*.c;*.cc;*.s;*.o" path="../platform/freertos/src/port"/>
+        <folder Name="src">
+          <folder Name="freertos">
+            <folder Name="core" filter="*.h;*.c;*.cc;*.s;*.o" path="../platform/freertos/src/freertos/core"/>
+            <folder Name="port" filter="*.h;*.c;*.cc;*.s;*.o" path="../platform/freertos/src/freertos/port"/>
+          </folder>
         </folder>
       </folder>
       <folder Name="lpc17xx">
