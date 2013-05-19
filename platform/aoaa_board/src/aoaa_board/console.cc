@@ -27,20 +27,22 @@ void Console::Deinit() {
   UART_TxCmd(const_cast<LPC_UART_TypeDef *>(kConsoleDevice), DISABLE);
 
   // Reset UART0 pin selection to default
-  PINSEL_CFG_Type default_pin2_config;
-  default_pin2_config.Portnum = PINSEL_PORT_0;
-  default_pin2_config.Pinnum = PINSEL_PIN_2;
-  default_pin2_config.Funcnum = PINSEL_FUNC_0;
-  default_pin2_config.Pinmode = PINSEL_PINMODE_PULLUP;
-  default_pin2_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+  PINSEL_CFG_Type default_pin2_config = {
+    .Portnum = PINSEL_PORT_0,
+    .Pinnum = PINSEL_PIN_2,
+    .Funcnum = PINSEL_FUNC_0,
+    .Pinmode = PINSEL_PINMODE_PULLUP,
+    .OpenDrain = PINSEL_PINMODE_NORMAL
+  };
   PINSEL_ConfigPin(&default_pin2_config);
 
-  PINSEL_CFG_Type default_pin3_config;
-  default_pin3_config.Portnum = PINSEL_PORT_0;
-  default_pin3_config.Pinnum = PINSEL_PIN_3;
-  default_pin3_config.Funcnum = PINSEL_FUNC_0;
-  default_pin3_config.Pinmode = PINSEL_PINMODE_PULLUP;
-  default_pin3_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+  PINSEL_CFG_Type default_pin3_config = {
+    .Portnum = PINSEL_PORT_0,
+    .Pinnum = PINSEL_PIN_3,
+    .Funcnum = PINSEL_FUNC_0,
+    .Pinmode = PINSEL_PINMODE_PULLUP,
+    .OpenDrain = PINSEL_PINMODE_NORMAL
+  };
   PINSEL_ConfigPin(&default_pin3_config);
 }
 
@@ -52,21 +54,23 @@ bool Console::Init(uint32_t baud_rate, UART_DATABIT_Type num_data_bits, UART_PAR
 
   if ((send_lock_ != NULL) && (receive_lock_ != NULL)) {
     // Configure UART0 pin selection for serial output
-    PINSEL_CFG_Type tx_pin_config;
-    tx_pin_config.Portnum = PINSEL_PORT_0;
-    tx_pin_config.Pinnum = PINSEL_PIN_2;
-    tx_pin_config.Funcnum = PINSEL_FUNC_1;
-    tx_pin_config.Pinmode = PINSEL_PINMODE_PULLUP;
-    tx_pin_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+    PINSEL_CFG_Type tx_pin_config = {
+      .Portnum = PINSEL_PORT_0,
+      .Pinnum = PINSEL_PIN_2,
+      .Funcnum = PINSEL_FUNC_1,
+      .Pinmode = PINSEL_PINMODE_PULLUP,
+      .OpenDrain = PINSEL_PINMODE_NORMAL
+    };
     PINSEL_ConfigPin(&tx_pin_config);
 
     // Configure UART0 pin selection for serial input
-    PINSEL_CFG_Type rx_pin_config;
-    rx_pin_config.Portnum = PINSEL_PORT_0;
-    rx_pin_config.Pinnum = PINSEL_PIN_3;
-    rx_pin_config.Funcnum = PINSEL_FUNC_1;
-    rx_pin_config.Pinmode = PINSEL_PINMODE_PULLUP;
-    rx_pin_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+    PINSEL_CFG_Type rx_pin_config = {
+      .Portnum = PINSEL_PORT_0,
+      .Pinnum = PINSEL_PIN_3,
+      .Funcnum = PINSEL_FUNC_1,
+      .Pinmode = PINSEL_PINMODE_PULLUP,
+      .OpenDrain = PINSEL_PINMODE_NORMAL
+    };
     PINSEL_ConfigPin(&rx_pin_config);
 
     // Configure UART0

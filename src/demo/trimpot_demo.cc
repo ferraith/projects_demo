@@ -33,13 +33,10 @@ bool TrimpotDemo::Init(uint16_t execution_cycle, uint8_t priority, Console *cons
 }
 
 void TrimpotDemo::Run() {
-  portTickType last_wake_time;
   uint16_t value = 0;
   char console_string[30];
   Trimpot trimpot;
 
-  // Set last wake time initially
-  last_wake_time = GetTickCount();
   // Initialize trimpot to be able to read trimpot value
   trimpot.Init(kSampleRate);
 
@@ -60,7 +57,7 @@ void TrimpotDemo::Run() {
       console_->SendString(console_string);
     }
     // Delay task some time
-    DelayUntil(&last_wake_time, execution_cycle_);
+    Delay(execution_cycle_);
   }
   // Should never be reached
   trimpot.Deinit();

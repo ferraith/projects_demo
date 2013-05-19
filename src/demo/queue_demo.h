@@ -32,7 +32,7 @@ class QueueDemo {
   ///
   /// @brief         Constructor.
   ///
-  explicit QueueDemo();
+  QueueDemo();
   ///
   /// @brief         Creates and initializes the queue, sender and receiver task.
   /// @param[in]     Console

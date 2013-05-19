@@ -18,23 +18,25 @@ void Trimpot::Deinit() {
   ADC_DeInit(LPC_ADC);
 
   // Reset ADC pin selection to default
-  PINSEL_CFG_Type default_pin_config;
-  default_pin_config.Portnum = PINSEL_PORT_1;
-  default_pin_config.Pinnum = PINSEL_PIN_31;
-  default_pin_config.Funcnum = PINSEL_FUNC_0;
-  default_pin_config.Pinmode = PINSEL_PINMODE_PULLUP;
-  default_pin_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+  PINSEL_CFG_Type default_pin_config = {
+    .Portnum = PINSEL_PORT_1,
+    .Pinnum = PINSEL_PIN_31,
+    .Funcnum = PINSEL_FUNC_0,
+    .Pinmode = PINSEL_PINMODE_PULLUP,
+    .OpenDrain = PINSEL_PINMODE_NORMAL
+  };
   PINSEL_ConfigPin(&default_pin_config);
 }
 
 void Trimpot::Init(uint32_t sample_rate) {
   // Configure ADC pin selection for analog input AD0.5
-  PINSEL_CFG_Type ad05_pin_config;
-  ad05_pin_config.Portnum = PINSEL_PORT_1;
-  ad05_pin_config.Pinnum = PINSEL_PIN_31;
-  ad05_pin_config.Funcnum = PINSEL_FUNC_3;
-  ad05_pin_config.Pinmode = PINSEL_PINMODE_PULLUP;
-  ad05_pin_config.OpenDrain = PINSEL_PINMODE_NORMAL;
+  PINSEL_CFG_Type ad05_pin_config = {
+    .Portnum = PINSEL_PORT_1,
+    .Pinnum = PINSEL_PIN_31,
+    .Funcnum = PINSEL_FUNC_3,
+    .Pinmode = PINSEL_PINMODE_PULLUP,
+    .OpenDrain = PINSEL_PINMODE_NORMAL
+  };
   PINSEL_ConfigPin(&ad05_pin_config);
 
   // Configure ADC to measure channel 5

@@ -33,14 +33,12 @@ void QueueSender::Run() {
   uint16_t counter = 0;
   char console_string[CONSOLE_STRING_SIZE];
 
-  portTickType last_wake_time = GetTickCount();
-
   for (;;) {
-    queue_->SendToBack(&counter, 0);
+    queue_->SendToBack(&counter, static_cast<uint16_t>(portMAX_DELAY));
     snprintf(console_string, CONSOLE_STRING_SIZE, "QueueSender: Sent %d\r\n", counter);
     console_->SendString(console_string);
     counter++;
-    DelayUntil(&last_wake_time, execution_cycle_);
+    Delay(execution_cycle_);
   }
 }
 

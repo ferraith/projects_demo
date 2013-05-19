@@ -33,16 +33,12 @@ void QueueReceiver::Run() {
   uint16_t counter;
   char console_string[CONSOLE_STRING_SIZE];
 
-  portTickType last_wake_time = GetTickCount();
-
-  Delay(execution_cycle_/2);
-
   for (;;) {
-    queue_->Receive(&counter, 0);
+    queue_->Receive(&counter, static_cast<uint16_t>(portMAX_DELAY));
     snprintf(console_string, CONSOLE_STRING_SIZE, "QueueReceiver: Received %d\r\n", counter);
     console_->SendString(console_string);
     counter++;
-    DelayUntil(&last_wake_time, execution_cycle_);
+    Delay(execution_cycle_);
   }
 }
 
