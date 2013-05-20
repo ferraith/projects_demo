@@ -11,7 +11,7 @@
 namespace aoaa_board {
 
 Console::Console()
-    : kTimeout(5 * portTICK_RATE_MS),  // Timeout is reached after 5 ms
+    : kTimeout(5 / portTICK_RATE_MS),  // Timeout is reached after 5 ms
       kConsoleDevice(LPC_UART0),       // USB-to-UART bridge is connected to UART0
       receive_lock_(NULL),
       send_lock_(NULL) {}

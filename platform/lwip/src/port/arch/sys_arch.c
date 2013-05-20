@@ -197,10 +197,10 @@ unsigned long ulReturn;
 
 	if( ulTimeOut != 0UL )
 	{
-		if( pdTRUE == xQueueReceive( *pxMailBox, &( *ppvBuffer ), ulTimeOut * portTICK_RATE_MS ) )
+		if( pdTRUE == xQueueReceive( *pxMailBox, &( *ppvBuffer ), ulTimeOut / portTICK_RATE_MS ) )
 		{
 			xEndTime = xTaskGetTickCount();
-			xElapsed = ( xEndTime - xStartTime ) / portTICK_RATE_MS;
+			xElapsed = ( xEndTime - xStartTime ) * portTICK_RATE_MS;
 
 			ulReturn = xElapsed;
 		}
@@ -215,7 +215,7 @@ unsigned long ulReturn;
 	{
 		while( pdTRUE != xQueueReceive( *pxMailBox, &( *ppvBuffer ), portMAX_DELAY ) );
 		xEndTime = xTaskGetTickCount();
-		xElapsed = ( xEndTime - xStartTime ) / portTICK_RATE_MS;
+		xElapsed = ( xEndTime - xStartTime ) * portTICK_RATE_MS;
 
 		if( xElapsed == 0UL )
 		{
