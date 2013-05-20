@@ -15,9 +15,8 @@ using ::aoaa_board::Trimpot;
 namespace demo {
 
 TrimpotDemo::TrimpotDemo()
-    : kSampleRate(200000),  // 200 kHz sample rate
-      kStackDepth(90),  // 360 Bytes
-      kTaskName("TrimpotDemo"),
+    : TaskWrapper("TrimpotDemo", 90),  // 360 Bytes
+      kSampleRate(200000),  // 200 kHz sample rate
       console_(nullptr),
       current_value_(0),
       execution_cycle_(0) {}
@@ -29,7 +28,7 @@ void TrimpotDemo::Deinit() {
 bool TrimpotDemo::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
   execution_cycle_ = execution_cycle;
   console_ = console;
-  return Create(kTaskName, kStackDepth, priority);
+  return Create(priority);
 }
 
 void TrimpotDemo::Run() {
@@ -47,13 +46,13 @@ void TrimpotDemo::Run() {
     // Check if value is valid and different from value which was read in last iteration
     if (value_is_valid && (abs(current_value_ - value) > 1)) {
       // Print read value on console
-      snprintf(console_string, sizeof(console_string), "TrimpotDemo: Read %d\r\n", value);
+      snprintf(console_string, sizeof(console_string), "%s: Read %d\r\n", task_name(), value);
       console_->SendString(console_string);
       current_value_ = value;
     // Read value is invalid
     } else if (!value_is_valid) {
       // Print error message
-      snprintf(console_string, sizeof(console_string), "TrimpotDemo: Read error\r\n", value);
+      snprintf(console_string, sizeof(console_string), "%s: Read error\r\n", task_name(), value);
       console_->SendString(console_string);
     }
     // Delay task some time

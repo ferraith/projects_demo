@@ -27,11 +27,11 @@ namespace demo {
 class TrimpotDemo : public TaskWrapper {
  public:
   ///
-  /// @brief         Constructor
+  /// @brief         Constructor.
   ///
   TrimpotDemo();
   ///
-  /// @brief         Destructor
+  /// @brief         Destructor.
   ///
   ~TrimpotDemo() {}
 
@@ -58,10 +58,6 @@ class TrimpotDemo : public TaskWrapper {
  private:
   /// Sample rate in which trim-pot will be read
   const uint32_t kSampleRate;
-  /// Size of the task stack specified as the number of variables the stack can hold
-  const uint16_t kStackDepth;
-  /// Descriptive name for the task
-  const char *kTaskName;
   /// Reference to the console which is used for printing debug messages
   Console *console_;
   /// Current value of trim-pot

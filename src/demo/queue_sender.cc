@@ -13,8 +13,7 @@
 namespace demo {
 
 QueueSender::QueueSender(QueueWrapper *queue)
-    : kStackDepth(90),  // 360 Bytes
-      kTaskName("QueueSender"),
+    : TaskWrapper("QueueSender", 90),  // 360 Bytes
       console_(nullptr),
       execution_cycle_(0),
       queue_(queue) {}
@@ -26,7 +25,7 @@ void QueueSender::Deinit() {
 bool QueueSender::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
   execution_cycle_ = execution_cycle;
   console_ = console;
-  return Create(kTaskName, kStackDepth, priority);
+  return Create(priority);
 }
 
 void QueueSender::Run() {
@@ -35,7 +34,7 @@ void QueueSender::Run() {
 
   for (;;) {
     queue_->SendToBack(&counter, static_cast<uint16_t>(portMAX_DELAY));
-    snprintf(console_string, CONSOLE_STRING_SIZE, "QueueSender: Sent %d\r\n", counter);
+    snprintf(console_string, CONSOLE_STRING_SIZE, "%s: Sent %d\r\n", task_name(), counter);
     console_->SendString(console_string);
     counter++;
     Delay(execution_cycle_);

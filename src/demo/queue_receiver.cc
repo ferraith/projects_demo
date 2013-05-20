@@ -13,8 +13,7 @@
 namespace demo {
 
 QueueReceiver::QueueReceiver(QueueWrapper *queue)
-    : kStackDepth(90),  // 360 Bytes
-      kTaskName("QueueReceiver"),
+    : TaskWrapper("QueueReceiver", 90),  // 360 Bytes
       console_(nullptr),
       execution_cycle_(0),
       queue_(queue) {}
@@ -26,7 +25,7 @@ void QueueReceiver::Deinit() {
 bool QueueReceiver::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
   execution_cycle_ = execution_cycle;
   console_ = console;
-  return Create(kTaskName, kStackDepth, priority);
+  return Create(priority);
 }
 
 void QueueReceiver::Run() {
@@ -35,7 +34,7 @@ void QueueReceiver::Run() {
 
   for (;;) {
     queue_->Receive(&counter, static_cast<uint16_t>(portMAX_DELAY));
-    snprintf(console_string, CONSOLE_STRING_SIZE, "QueueReceiver: Received %d\r\n", counter);
+    snprintf(console_string, CONSOLE_STRING_SIZE, "%s: Received %d\r\n", task_name(), counter);
     console_->SendString(console_string);
     counter++;
     Delay(execution_cycle_);

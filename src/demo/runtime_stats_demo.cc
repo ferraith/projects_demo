@@ -10,8 +10,7 @@
 namespace demo {
 
 RuntimeStatsDemo::RuntimeStatsDemo()
-    : kStackDepth(110),  // 440 Bytes
-      kTaskName("RuntimeStatsDemo"),
+    : TaskWrapper("RuntimeStatsDemo", 110),  // 440 Bytes
       console_(nullptr),
       execution_cycle_(0) {}
 
@@ -22,7 +21,7 @@ void RuntimeStatsDemo::Deinit() {
 bool RuntimeStatsDemo::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
   execution_cycle_ = execution_cycle;
   console_ = console;
-  return Create(kTaskName, kStackDepth, priority);
+  return Create(priority);
 }
 
 void RuntimeStatsDemo::Run() {

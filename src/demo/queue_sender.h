@@ -59,10 +59,6 @@ class QueueSender : public TaskWrapper {
   void Run();
 
  private:
-  /// Size of the task stack specified as the number of variables the stack can hold
-  const uint16_t kStackDepth;
-  /// Descriptive name for the task
-  const char *kTaskName;
   /// Reference to the console which is used for printing debug messages
   Console *console_;
   /// Cycle time in milliseconds in which the task will be executed periodically
