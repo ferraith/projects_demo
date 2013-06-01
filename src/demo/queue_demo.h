@@ -35,7 +35,7 @@ class QueueDemo {
   QueueDemo();
   ///
   /// @brief         Creates and initializes the queue, sender and receiver task.
-  /// @param[in]     Console
+  /// @param[in]     console  The console to display debug information.
   /// @return        None
   ///
   bool Init(Console *console);

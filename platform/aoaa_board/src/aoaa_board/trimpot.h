@@ -32,14 +32,14 @@ class Trimpot {
   void Deinit();
   ///
   /// @brief         Initialize analog input for trimming potentiometer.
-  /// @param[in]     sample_rate  ADC sample rate in Hz (should be <= 200 KHz)
+  /// @param[in]     sample_rate  ADC sample rate in Hz (should be <= 200 KHz).
   /// @return        None
   ///
   void Init(uint32_t sample_rate);
   ///
   /// @brief         Read value from the trimming potentiometer.
-  /// @param[out]    value  Converted analog input from trimming potentiometer
-  /// @return        True if value is valid
+  /// @param[out]    value  Converted analog input from trimming potentiometer.
+  /// @return        True if value is valid.
   bool Get(uint16_t *value);
 
  private:

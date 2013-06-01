@@ -7,7 +7,7 @@
 ///
 /// @brief         A macro to disallow the copy constructor and operator= function. This should be used in the private
 ///                declarations for a class
-/// @param[in]     class_name  The name of the class
+/// @param[in]     class_name  The name of the class.
 /// @return        None
 ///
 #define DISALLOW_COPY_AND_ASSIGN(class_name) \

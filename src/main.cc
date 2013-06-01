@@ -15,8 +15,8 @@ using ::freertos::kernel::StartScheduler;
 
 ///
 /// @brief         Initialize peripherals of microcontroller and board.
-/// @param[in]     console  Console to send and receive data to external devices
-/// @return        True if peripherals were successfully initialized
+/// @param[in]     console  Console to send and receive data to external devices.
+/// @return        True if peripherals were successfully initialized.
 ///
 bool InitEcu(Console *console) {
   // Initialize UART console
@@ -25,7 +25,7 @@ bool InitEcu(Console *console) {
 
 ///
 /// @brief         Deinitialize peripherals of microcontroller and board.
-/// @param[in]     console  Console to send and receive data to external devices
+/// @param[in]     console  Console to send and receive data to external devices.
 /// @return        None
 ///
 void DeinitEcu(Console *console) {

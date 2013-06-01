@@ -42,10 +42,10 @@ class TrimpotDemo : public TaskWrapper {
   void Deinit();
   ///
   /// @brief         Creates the trim-pot demo task and add it to the list of tasks that are ready to run.
-  /// @param[in]     execution_cycle  Cycle time in milliseconds in which the task will be executed periodically
-  /// @param[in]     priority  Priority at which the task should run
-  /// @param[in]     console  Console
-  /// @return        True if the task was successfully created and added to a ready list
+  /// @param[in]     execution_cycle  Cycle time in milliseconds in which the task will be executed periodically.
+  /// @param[in]     priority  Priority at which the task should run.
+  /// @param[in]     console  The console to display debug information.
+  /// @return        True if the task was successfully created and added to a ready list.
   ///
   bool Init(uint16_t execution_cycle, uint8_t priority, Console *console);
   ///

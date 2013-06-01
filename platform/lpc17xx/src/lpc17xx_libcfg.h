@@ -43,12 +43,10 @@
 
 
 ///
-/// @brief      The CHECK_PARAM macro is used for function's parameters check.
-///             It is used only if the library is compiled in DEBUG mode.
-/// @param[in]  expr - If expr is false, it calls check_failed() function
-///                    which reports the name of the source file and the source
-///                    line number of the call that failed.
-///                  - If expr is true, it returns no value.
+/// @brief      The CHECK_PARAM macro is used for function's parameters check. It is used only if the library is
+///             compiled in DEBUG mode.
+/// @param[in]  expr  If expr is false, it calls check_failed() function which reports the name of the source file and
+///             the source line number of the call that failed. If expr is true, it returns no value.
 /// @return     None
 ///
 #ifdef  DEBUG
@@ -58,10 +56,10 @@
 #endif  // DEBUG
 
 ///
-/// @brief       Reports the name of the source file and the source line number
-///              where the CHECK_PARAM error has occurred.
-/// @param[in]   file Pointer to the source file name
-/// @param[in]   line assert_param error line source number
+/// @brief       Reports the name of the source file and the source line number where the CHECK_PARAM error has
+///              occurred.
+/// @param[in]   file  Pointer to the source file name.
+/// @param[in]   line  assert_param error line source number.
 /// @return      None
 ///
 #ifdef  DEBUG
