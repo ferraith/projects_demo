@@ -5,11 +5,13 @@
 #include "demo/queue_demo.h"
 #include "demo/runtime_stats_demo.h"
 #include "demo/trimpot_demo.h"
+#include "freertos/port/kernel_wrapper.h"
 
 using ::aoaa_board::Console;
 using ::demo::QueueDemo;
 using ::demo::RuntimeStatsDemo;
 using ::demo::TrimpotDemo;
+using ::freertos::kernel::StartScheduler;
 
 ///
 /// @brief         Initialize peripherals of microcontroller and board.
@@ -54,7 +56,7 @@ int main() {
   run_time_stats_demo->Init(3000, tskIDLE_PRIORITY + 2, console);
 
   // Start task scheduling
-  vTaskStartScheduler();
+  StartScheduler();
 
   // Deinitialize ECU
   DeinitEcu(console);
