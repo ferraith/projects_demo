@@ -9,11 +9,12 @@
 #include "freertos/port/queue_wrapper.h"
 
 #define CONSOLE_STRING_SIZE 30
+#define STACK_DEPTH 90  // 360 Bytes
 
 namespace demo {
 
 QueueSender::QueueSender(QueueWrapper *queue)
-    : TaskWrapper("QueueSender", 90),  // 360 Bytes
+    : TaskWrapper("QueueSender"),
       console_(nullptr),
       execution_cycle_(0),
       queue_(queue) {}
@@ -25,7 +26,7 @@ void QueueSender::Deinit() {
 bool QueueSender::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
   execution_cycle_ = execution_cycle;
   console_ = console;
-  return Create(priority);
+  return Create(priority, STACK_DEPTH);
 }
 
 void QueueSender::Run() {

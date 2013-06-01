@@ -12,10 +12,12 @@
 using ::std::abs;
 using ::aoaa_board::Trimpot;
 
+#define STACK_DEPTH 90  // 360 Bytes
+
 namespace demo {
 
 TrimpotDemo::TrimpotDemo()
-    : TaskWrapper("TrimpotDemo", 90),  // 360 Bytes
+    : TaskWrapper("TrimpotDemo"),
       kSampleRate(200000),  // 200 kHz sample rate
       console_(nullptr),
       current_value_(0),
@@ -28,7 +30,7 @@ void TrimpotDemo::Deinit() {
 bool TrimpotDemo::Init(uint16_t execution_cycle, uint8_t priority, Console *console) {
   execution_cycle_ = execution_cycle;
   console_ = console;
-  return Create(priority);
+  return Create(priority, STACK_DEPTH);
 }
 
 void TrimpotDemo::Run() {
