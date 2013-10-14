@@ -1,0 +1,111 @@
+########################################################################################################################
+#
+# Project: AOAA Board Library
+#
+# Description:
+# SConstruct used to build the AOAA Board Library.
+#
+########################################################################################################################
+#
+# Configuration
+#
+#============================== Common =================================================================================
+
+env = Environment(tools = ['CrossWorks'])
+
+env['PROJ_NAME'] = 'freertos'
+env['DEBUGIO_SUPPORT'] = 'mempoll'
+
+for key, value in ARGLIST:
+	if key == 'BUILD_TYPE':
+		env['BUILD_TYPE'] = value # debug, release
+	elif key == 'BUILD_PLACEMENT':
+		env['BUILD_PLACEMENT'] = value # flash, ram, none
+	elif key == 'TARGET_OS':
+		env['TARGET_OS'] = value # arm, win32
+
+
+########################################################################################################################
+#
+# Libraries
+#
+#============================== Standard Libraries =====================================================================
+SConscript('C:\\Users\\andreas\\AppData\\Roaming\\scons\\site_scons\\libs.py', exports='env')
+
+#============================== Platform Libraries =====================================================================
+# Common
+env['PLTF_INC_DIRS']  = ['#../common/include']
+
+# CMSIS-CORE LPC17xx
+env['PLTF_INC_DIRS'] += ['#../cmsis_core_lpc17xx/include']
+env['PLTF_INC_DIRS'] += ['#../cmsis_core_lpc17xx/include/cmsis_core_lpc17xx']
+
+# LPC17xx
+env['PLTF_INC_DIRS'] += ['#../lpc17xx/include']
+env['PLTF_INC_DIRS'] += ['#../lpc17xx/src']
+
+# FreeRTOS
+env['PLTF_INC_DIRS'] += ['#../freertos/include']
+env['PLTF_INC_DIRS'] += ['#../freertos/src']
+env['PLTF_INC_DIRS'] += ['#../freertos/src/freertos/core']
+env['PLTF_INC_DIRS'] += ['#../freertos/src/freertos/port']
+
+
+########################################################################################################################
+#
+# GCC & Binutils Flags
+#
+#============================== Common Flags ===========================================================================
+SConscript('C:\\Users\\andreas\\AppData\\Roaming\\scons\\site_scons\\flags.py', exports='env')
+
+#============================== Project Preprocessor Defines ===========================================================
+# env['CPPDEFINES'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project Preprocessor Flags =============================================================
+# env['CPPFLAGS'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project S Compile Flags ================================================================
+# env['SFLAGS'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project C/C++ Compile Flags ============================================================
+env['CCFLAGS'] += ['-Werror']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project C Compile Flags ================================================================
+# env['CFLAGS'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project C++ Compile Flags ==============================================================
+# env['CXXFLAGS'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project Assembler Flags ================================================================
+# env['ASFLAGS'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+#============================== Project Archiver Flags =================================================================
+# env['ARFLAGS'] += ['']
+
+# if env['BUILD_TYPE'] == 'debug':
+# elif env['BUILD_TYPE'] == 'release':
+
+# print env.Dump()
+
+SConscript('src/SConscript', variant_dir = 'build/' + env['PLATFORM'] + '/' + env['BUILD_TYPE'], duplicate = 0, exports = 'env')
